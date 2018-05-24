@@ -1,0 +1,23 @@
+{
+  "DJ_GeneralActivity": {
+    "title": "组织活动",
+    "passPage": {
+      "url": "../../common/mapPanel/volunteerPanel.html",
+      "width": 430,
+      "height": 290,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+    },
+    "defaultPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+    },
+    "editPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+    }
+  }
+}

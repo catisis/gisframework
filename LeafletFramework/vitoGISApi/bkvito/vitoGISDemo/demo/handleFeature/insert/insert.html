@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>要素插入示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <button id="insert">插入要素</button>
+    <button id="delete">删除要素</button>
+</div>
+<div>
+    <p></p>
+</div>
+<script>
+    function init() {
+        VitoGIS.init("conf_insert.json",function(e){
+            window.gis = e;
+            layersConf = gis.layerManager.configManager.getFeatureLayersConf();//获取配置文件中要素的内容
+            var layer = {
+                name: "polygon",
+                status: "1",
+                color: "red"
+            };
+            gis.Events.on("DRAWEND",function(e){
+                layer.id = Date.parse(new Date());
+                e.layer.addTo(gis.layerManager.drawLayer);//将要素添加进层级的时候，如果配置文件中的info有指定的面板，则会弹出div面板；如果info属性是“”，则不弹出面板
+                gis.draw.doInsert(layer, function (data) {
+                    console.log(data);
+                });
+            });
+        });
+    }
+
+    var btnInsert = document.getElementById("insert");
+    btnInsert.addEventListener("click", function (e) {
+        gis.draw.active(layersConf[gis.layerManager._currentLayerId].geoType,false);
+    });
+    //删除要素
+    var btnDelete = document.getElementById("delete");
+    btnDelete.addEventListener("click", function (e) {
+        gis.draw.doDelete(function (e) {
+            console.log(e);
+        });
+    });
+</script>
+</body>
+</html>

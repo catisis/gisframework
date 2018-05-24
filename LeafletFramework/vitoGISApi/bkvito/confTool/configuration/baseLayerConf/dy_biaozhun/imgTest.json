@@ -1,0 +1,23 @@
+{
+  "imgTest": {
+    "id": "imgTest",
+    "title": "二维地图",
+    "mapUrl": "http://192.168.0.191:8090/iserver/services/map-instance2/wmts-china/DY2/default/custom_DY2/{z}/{y}/{x}.png",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 19,
+    "minZoom": 10,
+    "crs": "EPSG4326",
+    "visible": false,
+    "center": [
+      37.449639705533,
+      118.57684048122
+    ],
+    "initLevel": 15
+  }
+}

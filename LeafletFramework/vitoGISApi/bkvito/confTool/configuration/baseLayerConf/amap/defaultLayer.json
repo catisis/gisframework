@@ -1,0 +1,21 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "高德地图",
+    "mapUrl": "http://wprd{s}.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}",
+    "labelUrl": "",
+    "detectRetina":true,
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 18,
+    "minZoom": 4,
+    "crs": "EPSG900913",
+    "visible": true,
+    "center": [37.448964,118.582184],
+    "initLevel": 15
+  }
+}

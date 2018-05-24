@@ -1,0 +1,38 @@
+body,html,div,ul,li,iframe,dd,dl,dt,p,img{
+    border:none;padding:0;margin:0;
+}
+body,html{
+    width:100%;height:100%;overflow: hidden;
+}
+body{
+    font-size:12px;color:#000;font-family:"微软雅黑";
+}
+/**设置滚动条的样式**/
+::-webkit-scrollbar {
+    width: 10px;
+}
+/**滚动槽**/
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #d1cfcf;
+    border-radius: 10px;
+}
+/**滚动条滑块**/
+::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: #f7f7f7;
+    -webkit-box-shadow: inset 0 0 6px #d1cfcf;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(245,245,245,0.4);
+}
+/**clear float**/
+.clearfix{
+    display:block;zoom:1;
+}
+.clearfix:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}

@@ -1,0 +1,23 @@
+{
+  "View": {
+    "title": "人员管理",
+    "passPage": {
+      "url": "panel/partymemberPanel.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+    },
+    "defaultPage": {
+      "url": "../map/theme/template/template.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+    },
+    "editPage": {
+      "url": "../map/theme/template/template.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+    }
+  }
+}

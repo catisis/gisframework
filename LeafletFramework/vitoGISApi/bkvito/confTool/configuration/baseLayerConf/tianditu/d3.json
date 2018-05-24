@@ -1,0 +1,22 @@
+{
+  "d3": {
+    "id": "d3",
+    "title": "三维地图",
+    "mapUrl": "http://t2.tianditu.cn/DataServer?T=img_w&X={x}&Y={y}&L={z}",
+    "labelUrl": "",
+    "subdomains": [
+      "0",
+      "1",
+      "2"
+    ],
+    "maxZoom": 18,
+    "minZoom": 5,
+    "crs": "EPSG3857",
+    "tms":true,
+    "visible": true,
+    "center": [
+      39.91349,116.407945
+    ],
+    "initLevel": 15
+  }
+}

@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <button id="getData">get请求</button>
+    <input type="text" id="get"/>
+</div>
+<div>
+    <button id="postData">post请求</button>
+    <input type="text" id="post"/>
+</div>
+</body>
+</html>
+
+<script src="../../../libs/jquery/jquery.min.js"></script>
+
+<script>
+    $("#getData").on("click", function () {
+        $.ajax({
+            type: "get",
+            url:  "/testGet",
+            data: {maptitle: "321", mapconfig: "654",id: "987"},
+            dataType: "json",
+            success: function(e) {
+
+                //测试代码，是否成功存入数据库
+                console.log(e);
+                $("#get").val(e.maptitle + e.mapconfig + e.id);
+                alert("成功！！！");
+            },
+            error: function() {
+                alert("失败!");
+            }
+        });
+    });
+    $("#postData").on("click", function () {
+        $.ajax({
+            type: "post",
+            url:  "/testPost",
+            data: {maptitle: "测试", mapconfig: dataStr,id: "789"},
+            dataType: "json",
+            success: function(e) {
+
+                //测试代码，是否成功存入数据库
+                console.log(e);
+                $("#post").val(e.maptitle + e.mapconfig + e.id);
+                alert("成功！！！");
+            },
+            error: function() {
+                alert("失败!");
+            }
+        });
+    });
+
+    var data = {
+        "baseLayerConf": {
+            "defaultLayer": {
+                "id": "defaultLayer",
+                "title": "默认地图",
+                "mapUrl": "http://10.145.65.150:8090/geowebcache/service/wmts?service=WMTS&request=GetTile&version=1.0.0&layer=GX_25D&format=image%2Fpng&height=256&width=256&TILEMATRIXSET=EPSG:3857_GX_25D&tilematrix=EPSG:3857_GX_25D:{z}&tilerow={y}&tilecol={x}",
+                "labelUrl": "",
+                "subdomains": [
+                    "01",
+                    "02",
+                    "03",
+                    "04"
+                ],
+                "maxZoom": 17,
+                "minZoom": 12,
+                "crs": "EPSG3395",
+                "visible": true,
+                "center": [
+                    0.05717222648141838,
+                    0.1439465088351648
+                ],
+                "initLevel": 15
+            }
+        },
+        "featureLayersConf": {
+            "BASE_ORINIT": {
+                "isShow": false,
+                "isDraw": false,
+                "geom_field": "GEOM",
+                "nameSpace": "GX",
+                "serverType": "OGC",
+                "info": "",
+                "visible": false,
+                "filter": "LEVELID in (10000007770007)",
+                "tableName": "BASE_ORG",
+                "auto": false,
+                "title": "初始化区域",
+                "url": "../gis/proxy.jsp?http://10.251.255.133:7001/geoserver/GX/ows",
+                "geoType": "polygon"
+            },
+            "BASE_ORGQX": {
+                "isShow": true,
+                "isDraw": false,
+                "geom_field": "GEOM",
+                "nameSpace": "GX",
+                "defaultStyle": {
+                    "fillColor": "#CD4F39",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "serverType": "OGC",
+                "labelField": "ORGNAME",
+                "info": "base_org_view",
+                "visible": false,
+                "filter": "LEVELID in (10000007770007)",
+                "tableName": "BASE_ORG",
+                "resource": "djxt_dzzgl1",
+                "auto": true,
+                "title": "区县",
+                "minZoom": 10,
+                "defaultZoom": 10,
+                "url": "../gis/proxy.jsp?http://10.251.255.133:7001/geoserver/GX/ows",
+                "passStyle": {
+                    "fillColor": "#000000",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "geoType": "polygon",
+                "maxZoom": 18
+            },
+            "BASE_ORGJD": {
+                "isShow": true,
+                "isDraw": false,
+                "geom_field": "GEOM",
+                "nameSpace": "GX",
+                "defaultStyle": {
+                    "fillColor": "#CD4F39",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "serverType": "OGC",
+                "labelField": "ORGNAME",
+                "info": "base_org_view",
+                "visible": false,
+                "filter": "LEVELID in (10000007770008)",
+                "tableName": "BASE_ORG",
+                "resource": "djxt_dzzgl1",
+                "auto": true,
+                "title": "街道",
+                "minZoom": 10,
+                "defaultZoom": 12,
+                "url": "../gis/proxy.jsp?http://10.251.255.133:7001/geoserver/GX/ows",
+                "passStyle": {
+                    "fillColor": "#000000",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "geoType": "polygon",
+                "maxZoom": 18
+            },
+            "BASE_ORGSQ": {
+                "isShow": true,
+                "isDraw": true,
+                "geom_field": "GEOM",
+                "nameSpace": "GX",
+                "defaultStyle": {
+                    "fillColor": "#CD4F39",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "serverType": "OGC",
+                "labelField": "ORGNAME",
+                "info": "base_org_view",
+                "visible": false,
+                "filter": "LEVELID in (10000007770009)",
+                "tableName": "BASE_ORG",
+                "resource": "djxt_dzzgl1",
+                "auto": true,
+                "title": "社区",
+                "minZoom": 10,
+                "defaultZoom": 14,
+                "url": "../gis/proxy.jsp?http://10.251.255.133:7001/geoserver/GX/ows",
+                "passStyle": {
+                    "fillColor": "#000000",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "geoType": "polygon",
+                "maxZoom": 18
+            },
+            "BASE_ORGWG": {
+                "isShow": true,
+                "isDraw": true,
+                "geom_field": "GEOM",
+                "nameSpace": "GX",
+                "defaultStyle": {
+                    "fillColor": "#CD4F39",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "serverType": "OGC",
+                "labelField": "ORGNAME",
+                "info": "base_org_view",
+                "visible": false,
+                "filter": "LEVELID in (10000007770010)",
+                "tableName": "BASE_ORG",
+                "resource": "djxt_dzzgl1",
+                "auto": true,
+                "title": "网格",
+                "minZoom": 10,
+                "defaultZoom": 15,
+                "url": "../gis/proxy.jsp?http://10.251.255.133:7001/geoserver/GX/ows",
+                "passStyle": {
+                    "fillColor": "#000000",
+                    "opacity": 0.1,
+                    "fillOpacity": 0.5
+                },
+                "geoType": "polygon",
+                "maxZoom": 18
+            },
+            "D_BUILDING": {
+                "fields": [
+                    "ID",
+                    "GEOM",
+                    "ORGID",
+                    "ISLOCATE",
+                    "ORGNAME",
+                    "NAME",
+                    "ISBUSINE",
+                    "ORGPATH",
+                    "REMARK",
+                    "MAPBIGTYPENAME",
+                    "MAPSAMLLTYPENAME",
+                    "MAPBIGTYPEID",
+                    "MAPSAMLLTYPEID"
+                ],
+                "isShow": true,
+                "isDraw": true,
+                "geom_field": "GEOM",
+                "nameSpace": "GX",
+                "defaultStyle": {
+                    "fillColor": "#CD4F39",
+                    "opacity": 0.1,
+                    "fillOpacity": 0
+                },
+                "serverType": "OGC",
+                "labelField": "NAME",
+                "info": "d_building_view",
+                "visible": true,
+                "filter": "",
+                "tableName": "D_BUILDING",
+                "resource": "djxt_dzzgl1",
+                "auto": true,
+                "title": "楼宇",
+                "minZoom": 12,
+                "defaultZoom": 16,
+                "url": "../gis/proxy.jsp?http://10.251.255.133:7001/geoserver/GX/ows",
+                "passStyle": {
+                    "fillColor": "#000000",
+                    "opacity": 0.1,
+                    "fillOpacity": 0
+                },
+                "geoType": "polygon",
+                "maxZoom": 19
+            }
+        },
+        "widgetsConfig": {
+            "CircleViewWidget": {
+                "id": "CircleViewWidget",
+                "widgetUrl": "../gis/widgets/CircleView_Marker/CircleVIewWidget.js",
+                "widgetConf": "../gis/widgets/CircleView_Marker/CircleViewConf.json",
+                "isUse": true,
+                "title": "圆形视图插件"
+            },
+            "Overview": {
+                "id": "Overview",
+                "widgetUrl": "../gis/widgets/Overview/Overview.js",
+                "widgetConf": "../gis/widgets/Overview/OverviewConf.json",
+                "widgetCSS": "../gis/widgets/Overview/Overview.css",
+                "isUse": false,
+                "title": "鹰眼视图插件"
+            },
+            "Tools": {
+                "id": "Tools",
+                "widgetUrl": "../gis/widgets/Tools/Tools.js",
+                "widgetConf": "../gis/widgets/Tools/ToolsConf.json",
+                "isUse": true,
+                "title": "工具插件"
+            },
+            "Transform": {
+                "id": "Transform",
+                "widgetUrl": "../gis/widgets/transform_dy/Transform.js",
+                "widgetConf": "../../portal/LocatMapWkt/getTransformParameter.ht",
+                "isUse": true,
+                "title": "坐标转换插件"
+            },
+            "AreaAnalysis": {
+                "id": "AreaAnalysis",
+                "widgetUrl": "../gis/widgets/AreaAnalysis/AreaAnalysis.js",
+                "widgetConf": "../gis/widgets/AreaAnalysis/AreaAnalysis.json",
+                "isUse": true,
+                "title": "区域分析插件"
+            },
+            "RoutePlayer": {
+                "id": "RoutePlayer",
+                "widgetUrl": "../gis/widgets/RoutePlayer/RoutePlayer.js",
+                "widgetConf": "../gis/widgets/RoutePlayer/RoutePlayerConf.json",
+                "widgetCSS": "../gis/widgets/RoutePlayer/RoutePlayer.css",
+                "isUse": true,
+                "title": "路线记录插件"
+            },
+            "ShowCoordinatePoint": {
+                "id": "ShowCoordinatePoint",
+                "widgetUrl": "../gis/widgets/showCoordinatePoint/ShowCoordinatePoint.js",
+                "widgetConf": "../gis/widgets/showCoordinatePoint/ShowCoordinatePoint.json",
+                "widgetCSS": "../gis/widgets/showCoordinatePoint/ShowCoordinatePoint.css",
+                "isUse": true,
+                "title": "显示经纬度"
+            },
+            "Jiejing": {
+                "id": "Jiejing",
+                "widgetUrl": "../gis/widgets/Jiejing/Jiejing.js",
+                "widgetConf": "../gis/widgets/Jiejing/JiejingConf.json",
+                "isUse": true,
+                "title": "街景"
+            }
+        },
+        "divConfig": {
+            "ecs_comp_library": {
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_ferry": {
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_bridge": {
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_uncultivatedland": {
+                "title": "CT_UNCULTIVATEDLAND",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_tunnel": {
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_road": {
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_watersource": {
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 380,
+                    "height": 290,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "d_communityunderspaceinfo": {
+                "title": "D_COMMUNITYUNDERSPACEINFO",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "DrawPanel": {
+                "title": "绘制面板",
+                "passPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "r_people": {
+                "title": "人员面板",
+                "defaultPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/peoplePanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "passPage": {
+                    "url": "../../common/mapPanel/peoplePanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zz_corp": {
+                "title": "法人面板",
+                "defaultPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/corpPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "passPage": {
+                    "url": "../../common/mapPanel/corpPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "xzqpanle": {
+                "title": "行政区面板",
+                "passPage": {
+                    "url": "../../common/mapPanel/xzqyPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "eventinfo": {
+                "title": "事件面板",
+                "passPage": {
+                    "url": "../../common/mapPanel/dispute_reportPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "dj_party": {
+                "title": "DJ_Party",
+                "passPage": {
+                    "url": "../../common/mapPanel/partyPanel.html",
+                    "width": 380,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "dj_organizationwork": {
+                "title": "DJ_Organizationwork",
+                "passPage": {
+                    "url": "../../common/mapPanel/organizationworkPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "dj_volunteerservice": {
+                "title": "DJ_VolunteerService",
+                "passPage": {
+                    "url": "../../common/mapPanel/volunteerPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "dj_activitywish": {
+                "title": "DJ_ActivityWish",
+                "passPage": {
+                    "url": "../../common/mapPanel/activityWishPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "base_org_view": {
+                "title": "Base_Org",
+                "passPage": {
+                    "title": "{ORGNAME}",
+                    "url": "../../common/mapPanel/xzqyPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "base_org": {
+                "title": "Base_Org",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/xzqyPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "cjr_disabledorg": {
+                "title": "CJR_DISABLEDORG",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_waterfacilities": {
+                "title": "CT_WATERFACILITIES",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ct_irrigationarea": {
+                "title": "CT_IRRIGATIONAREA",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ly_events": {
+                "title": "LY_EVENTS",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "whfw_activitiescenter": {
+                "title": "WHFW_ACTIVITIESCENTER",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "ly_scenicspot": {
+                "title": "LY_SCENICSPOT",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "d_videomonitor": {
+                "title": "D_VIDEOMONITOR",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/shipinPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "tyzx_religiousorg": {
+                "title": "TYZX_RELIGIOUSORG",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zhzl_massestreatorg": {
+                "title": "ZHZL_MASSESTREATORG",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zhzl_keysections": {
+                "title": "ZHZL_KEYSECTIONS",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zhzl_keyareas": {
+                "title": "ZHZL_KEYAREAS",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zhzl_keyarea": {
+                "title": "ZHZL_KEYAREA",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "standing_book": {
+                "title": "STANDING_BOOK",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "case_bkgd_info": {
+                "title": "CASE_BKGD_INFO",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zhzl_keyplace": {
+                "title": "ZHZL_KEYPLACE",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "d_building_view": {
+                "title": "D_Building",
+                "passPage": {
+                    "title": "{NAME}",
+                    "url": "../../common/mapPanel/newBuildingPanel.html",
+                    "width": 494,
+                    "height": 434,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "d_building": {
+                "title": "D_Building",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/newBuildingPanel.html",
+                    "width": 494,
+                    "height": 434,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "disputepanel": {
+                "title": "DISPUTE_REPORT",
+                "defaultPage": {
+                    "title": "事件详情",
+                    "url": "../../common/mapPanel/dispute_reportPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "title": "事件上报",
+                    "url": "../../common/mapPanel/dispute_submitPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "griderpanel": {
+                "title": "DISPUTE_TRACE",
+                "passPage": {
+                    "url": "../../common/mapPanel/dispute_griderPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "title": "网格员信息",
+                    "url": "../../common/mapPanel/dispute_griderPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/dispute_griderPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "vitoperson": {
+                "title": "DISPUTE_TRACE",
+                "passPage": {
+                    "url": "../../common/mapPanel/dispute_griderPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "title": "网格员信息",
+                    "url": "../../common/mapPanel/dispute_griderPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/dispute_griderPanel.html",
+                    "width": 650,
+                    "height": 380,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "nr_nationalreligionorg": {
+                "title": "NR_NATIONALRELIGIONORG",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "nr_religiousplace": {
+                "title": "NR_RELIGIOUSPLACE",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "nr_nationalenterprise": {
+                "title": "NR_NATIONALENTERPRISE",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "nr_nationaleducation": {
+                "title": "NR_NATIONALEDUCATION",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "nr_religiousgroup": {
+                "title": "NR_RELIGIOUSGROUP",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "c_activity": {
+                "title": "C_ACTIVITY",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "DJ_GeneralActivity": {
+                "title": "组织活动",
+                "passPage": {
+                    "url": "../../common/mapPanel/volunteerPanel.html",
+                    "width": 430,
+                    "height": 290,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                }
+            },
+            "DJ_NewPublicSchool": {
+                "title": "学校",
+                "passPage": {
+                    "url": "../../common/mapPanel/newPublicSchoolPanel.html",
+                    "width": 430,
+                    "height": 290,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                }
+            },
+            "DJ_Party": {
+                "title": "DJ_Party",
+                "passPage": {
+                    "url": "../../common/mapPanel/dzzPanel.html",
+                    "width": 332,
+                    "height": 300,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                }
+            },
+            "View": {
+                "title": "人员管理",
+                "passPage": {
+                    "url": "panel/partymemberPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "defaultPage": {
+                    "url": "../map/theme/template/template.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                },
+                "editPage": {
+                    "url": "../map/theme/template/template.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_noheader.html"
+                }
+            },
+            "dj_partymember": {
+                "title": "党员信息",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commie.html",
+                    "width": 494,
+                    "height": 434,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/commie.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "whfw_square": {
+                "title": "WHFW_SQUARE",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/cultureSquare.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            },
+            "zhzl_projectbook": {
+                "title": "ZHZL_PROJECTBOOK",
+                "passPage": {
+                    "title": "{title}",
+                    "url": "../../common/mapPanel/commonPanel.html",
+                    "width": 450,
+                    "height": 400,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "defaultPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                },
+                "editPage": {
+                    "url": "../../common/mapPanel/addCoordinate.html",
+                    "width": 400,
+                    "height": 350,
+                    "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+                }
+            }
+        }
+    };
+    var dataStr = escape(JSON.stringify(data)) ;
+
+
+</script>

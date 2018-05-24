@@ -1,0 +1,12 @@
+node_modules
+doc
+.DS_Store
+tmp/**/*
+.idea
+_site
+dist/**
+coverage/
+*.js.html
+index.html
+.mailmap
+tempory

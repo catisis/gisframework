@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet debug page</title>
+    <link rel="stylesheet" href="../../dist/leaflet.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/mobile.css"/>
+    <script type="text/javascript" src="../../build/deps.js"></script>
+    <script src="../leaflet-include.js"></script>
+    <style>
+        .tools {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+<div class="tools">
+    <button onclick="map.zoomIn()">放大</button>
+    <button onclick="map.zoomOut()">缩小</button>
+    <button onclick="save()">保存地图</button>
+
+</div>
+
+<script type="text/javascript">
+
+    function getRes(level) {
+        var res = [];
+        res[0] = 156543.0339;
+        for (var i = 1; i < level; i++) {
+            res[i] = res[i - 1] / 2;
+        }
+        return res;
+    }
+    var crs = new L.Proj.CRS('EPSG:900913',
+                    '+title=Google Mercator EPSG:900913 +proj=merc +ellps=WGS84 +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs',
+                    {
+                        resolutions: getRes(18),
+                        origin: [-32768.0, 98304.0]
+                    }),
+            map = new L.Map('map', {
+                crs: crs
+            });
+
+
+    var my25 = L.tileLayer('http://192.168.0.191:8090/iserver/services/map-instance/rest/maps/DY25/tileImage.png?transparent=true&cacheEnabled=true&width=256&height=256&x={x}&y={y}&scale={sm}&redirect=false', {
+        maxZoom: 18,
+        minZoom: 11,
+        continuousWorld: true,
+        attribution: 'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, Imagery &copy; 2013 <a href="http://www.kartena.se/">Kartena</a>'
+    }).addTo(map);
+
+
+    map.setView([0.4438469611981745, 0.8859836754179722], 13);
+
+
+
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+    map.addControl(new L.Control.Draw({
+        edit: { featureGroup: drawnItems }
+    }));
+    map.on('draw:created', function (e) {
+        var type = e.layerType,
+                layer = e.layer;
+        debugger;
+        if (type === 'marker') {
+            layer.bindPopup('A popup!');
+        }
+        drawnItems.addLayer(layer);
+    });
+
+    var draw = "http://192.168.0.191:8090/iserver/services/data-instance/rest/data/datasources/SUPERMAP_DY/datasets/D_Building/features.jsonp";
+    function deleteFeature(ids){
+        var task = new L.SaveDraw({});
+        task.delete(draw,ids,function(){
+            alert("123");
+        })
+
+    }
+
+    function save(){
+        var task = new L.SaveDraw({});
+        task.save(draw,drawnItems,function(){
+            alert("123");
+        })
+    }
+</script>
+</body>
+</html>

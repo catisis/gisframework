@@ -1,0 +1,26 @@
+{
+  "d3r": {
+    "id": "d3r",
+    "title": "三维反向",
+    "mapUrl": "http://192.168.0.80:8070/iserver/services/map-DY/rest/maps/DY_26D/tileImage.png?maxVisibleVertex=360000&transparent=true&cacheEnabled=true&width=256&height=256&x={x}&y={y}&scale={sm}&redirect=false",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 18,
+    "minZoom": 11,
+    "crs": [
+      0,
+      98304.0
+    ],
+    "visible": false,
+    "center": [
+      0.4583632412955232,
+      0.8744859695432283
+    ],
+    "initLevel": 15
+  }
+}

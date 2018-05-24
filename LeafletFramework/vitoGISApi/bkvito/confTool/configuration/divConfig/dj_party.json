@@ -1,0 +1,23 @@
+{
+  "dj_party": {
+    "title": "DJ_Party",
+    "passPage": {
+      "url": "../../common/mapPanel/partyPanel.html",
+      "width": 380,
+      "height": 300,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "defaultPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "editPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

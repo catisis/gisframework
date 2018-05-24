@@ -1,0 +1,23 @@
+{
+  "amap": {
+    "id": "amap",
+    "title": "高德地图",
+    "mapUrl": "http://webrd{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 18,
+    "minZoom": 4,
+    "crs": "EPSG900913",
+    "visible": false,
+    "center": [
+      26.678101837237552,
+      106.62277579307558
+    ],
+    "initLevel": 17
+  }
+}

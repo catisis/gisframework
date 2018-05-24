@@ -1,0 +1,10 @@
+{
+  "RoutePlayer": {
+    "id":"RoutePlayer",
+    "widgetUrl": "widgets/RoutePlayer/RoutePlayer.js",
+    "widgetConf": "widgets/RoutePlayer/RoutePlayerConf.json",
+    "widgetCSS": "widgets/RoutePlayer/RoutePlayer.css",
+    "isUse": true,
+    "title": "路线记录插件"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "baseLayerConf": {
+    "defaultLayer": {
+      "id": "amap",
+      "title": "高德地图",
+      "mapUrl": "http://wprd{s}.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}",
+      "labelUrl": "",
+      "detectRetina":false,
+      "subdomains": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "maxZoom": 18,
+      "minZoom": 4,
+      "crs": "EPSG900913",
+      "visible": true,
+      "center": [39.904989,116.405285],
+      "initLevel": 13
+    }
+  },
+  "featureLayersConf": {
+    "POLYGON": {
+      "fields":["NAME","COLOR","AREA","STATUS"],
+      "isShow": true,
+      "geom_field": "GEOM",
+      "crs": "EPSG3395",
+      "netSP": "http://www.bkvito.com/portalnet",
+      "nameSpace": "portalnet",
+      "defaultStyle": {
+        "fillColor": "#CD4F39",
+        "opacity": 0.1,
+        "fillOpacity": 0
+      },
+      "serverType": "OGC",
+      "labelField": "NAME",
+      "info": "",
+      "visible": false,
+      "filter": "",
+      "tableName": "POLYGON",
+      "auto": true,
+      "title": "面",
+      "minZoom": 15,
+      "defaultZoom": 16,
+      "url": "http://192.168.0.80:8080/geoserver/portalnet/ows",
+      "passStyle": {
+        "fillColor": "#000000",
+        "opacity": 0.1,
+        "fillOpacity": 0
+      },
+      "geoType": "polygon",
+      "maxZoom": 17
+    }
+  },
+  "widgetsConfig": {
+    "MonitorPoint": {
+      "id":"MonitorPoint",
+      "widgetUrl": "/js/widgets/monitor/MonitorToPoint.js",
+      "widgetConf": "/js/widgets/monitor/MonitorToPoint.json",
+      "isUse": true
+    }
+  },
+  "divConfig": {
+
+  }
+}

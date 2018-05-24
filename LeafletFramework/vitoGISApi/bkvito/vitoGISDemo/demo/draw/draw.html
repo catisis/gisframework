@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>面绘制的示例</title>
+    <script src="../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div id="baseLayer">
+    <button id="drawPoint">绘制点</button>
+    <button id="drawPolyline">绘制线</button>
+    <button id="drawPolygon">绘制面</button>
+</div>
+<div>
+    <p>第二个参数不写，或者为false时，在绘制结束后不会给元素绑定对话框，但是会分发DRAWEND事件。可以监听DRAWEND事件，自定义绘制结束后的操作。</p>
+    <p>如果第二个参数为true，则绘制结束后直接弹出配置文件中要素的info属性指定的弹出窗。例如：</p>
+</div>
+<div id="featureLayer">
+</div>
+<script>
+    function init() {
+        VitoGIS.init("conf_draw.json",function(e){
+            window.gis = e;
+            gis.Events.on("DRAWEND",function(e){
+                alert("绘制结束!")
+            });
+        });
+    }
+    //绘制点
+    var btnDrawPoint = document.getElementById("drawPoint");
+    btnDrawPoint.addEventListener("click", function (e) {
+        gis.draw.active("point",false);
+    });
+    //绘制线
+    var btnDrawPolyline = document.getElementById("drawPolyline");
+    btnDrawPolyline.addEventListener("click", function (e) {
+        gis.draw.active("polyline",false);
+    });
+    //绘制面
+    var btnDrawPolygon = document.getElementById("drawPolygon");
+    btnDrawPolygon.addEventListener("click", function (e) {
+        //第二个参数不写，或者为false时，在绘制结束后不会给元素绑定对话框，但是会分发DRAWEND事件。可以监听DRAWEND事件，自定义绘制结束后的操作。
+        gis.draw.active("polygon",false);
+    });
+</script>
+</body>
+</html>

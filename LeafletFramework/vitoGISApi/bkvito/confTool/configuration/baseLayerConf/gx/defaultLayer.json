@@ -1,0 +1,25 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://125.64.222.249:8090/iserver/services/map-instance/rest/maps/GX25/tileImage.png?transparent=true&cacheEnabled=false&width=256&height=256&x={x}&y={y}&scale={sm}&redirect=false",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 18,
+    "minZoom": 10,
+    "crs": [
+      252.97,
+      15890.05
+    ],
+    "visible": true,
+    "center": [
+      0.05717222648141838,0.1439465088351648
+    ],
+    "initLevel": 15
+  }
+}

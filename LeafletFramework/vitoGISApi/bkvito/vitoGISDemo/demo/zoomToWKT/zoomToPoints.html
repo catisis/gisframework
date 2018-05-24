@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>zoomToPOINTS示例</title>
+    <script src="../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+        .myDivIcon {
+            background: url(image/poi/default-DJ_Organizationwork.png) no-repeat;
+        }
+
+        .myDivIcon span {
+            position: absolute;
+            top: -18px;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+
+</div>
+<script>
+
+    function init() {
+        VitoGIS.init("conf_zoomToWKT.json",function(e){
+            window.gis = e;
+            gis.layerManager.zoomToPoints(points,"","",{icon: myIcon},"",true);
+        });
+    }
+
+    var points = [[39.904989,116.405285], [40.904989,116.405285]];
+    var myIcon = L.divIcon({
+        className: 'myDivIcon',
+        iconSize: [44, 33],
+        iconAnchor: [22, 32],
+        html: "<span>123456</span>"
+    });
+</script>
+</body>
+</html>

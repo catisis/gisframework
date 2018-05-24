@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>面绘制的示例</title>
+    <script src="../../core/js/api.js"></script>
+    <script type="text/javascript" src="../../../../../libs/jquery/jquery.js"></script>
+    <style>
+        html, body, #map {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body onload="init()">
+
+<div id="map"></div>
+<div id="baseLayer" style="position: absolute;top: 10px;left: 10px;z-index: 999">
+    <button id="drawPoint">绘制点</button>
+    <button id="drawPolyline">绘制线</button>
+    <button id="drawPolygon">绘制面</button>
+    <button id="distance">测距</button>
+    <button id="area">测面</button>
+    <button id="clear">清除</button>
+    <button id="center">中心点</button>
+    <button id="forWKT">添加要素点</button>
+    <button id="tg">单击和双击事件切换</button>
+    <button id="zj">增加事件监听</button>
+    <button id="yichu">移除事件监听</button>
+
+
+</div>
+<script src="base.js"></script>
+</body>
+</html>

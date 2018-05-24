@@ -1,0 +1,16 @@
+.QXName {
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.QXName:before {
+    content: ' ';
+    height: 6px;
+    width: 6px;
+    background-color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: 2;
+}

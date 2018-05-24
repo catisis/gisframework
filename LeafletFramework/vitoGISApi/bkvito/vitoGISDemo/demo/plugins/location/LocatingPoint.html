@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>zoomToWKT示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+
+        .myDivIcon {
+            background: url(image/poi/default-DJ_Organizationwork.png) no-repeat;
+        }
+
+        .myDivIcon span {
+            position: absolute;
+            top: -18px;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+
+</div>
+<script>
+
+    function init() {
+        VitoGIS.init("conf_LocatingPoint.json", function (e) {
+            window.gis = e;
+            gis.Events.on("LOCATINGPOINT", function (e) {
+                gis.locatingpoint.locate(points, "", "", {icon: myIcon}, null, true, polygon);
+            });
+        });
+    }
+
+
+    var points = [[39.905989,116.435285], [39.908989,116.412285]];
+
+    var myIcon = L.divIcon({
+        className: 'myDivIcon',
+        iconSize: [44, 33],
+        iconAnchor: [22, 32],
+        html: "<span>123456</span>"
+    });
+
+    var polygon = [
+        {
+            wkt: "POLYGON (116.405285 39.904989,116.405285 39.907989,116.505285 39.904989,116.405285 39.904989)"
+        },
+        {
+            wkt: "POLYGON (116.405285 39.904989,116.405285 39.914989,116.430285 39.904989,116.405285 39.904989)"
+        }
+    ];
+</script>
+</body>
+</html>

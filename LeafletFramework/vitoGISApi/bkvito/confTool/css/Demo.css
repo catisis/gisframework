@@ -1,0 +1,91 @@
+/*初始化*/
+*{margin:0;padding: 0}
+.hidden {
+    display: none !important;
+}
+
+body {
+    background-color: #eeeeee;
+}
+/*header样式设置开始*/
+.header {
+    height: 60px;
+    background-color: #DCDBD9;
+    margin-bottom: 30px;
+}
+.header h1 {
+    font-size: 184.6%;
+    color: #30418C;
+    margin: 0.75em 0 0.5em;
+}
+.header .version em{
+    display: block;
+    text-align: right;
+}
+/*header样式设置结束*/
+/*container样式设置开始*/
+.clear-margin {   /*清除.row的margin-left和margin-right*/
+    margin-left: 0;
+    margin-right: 0;
+}
+
+label {
+    margin: 11px 0 10px 20px;
+    float: left;
+}
+
+#select_area {
+    display: block;
+    height: 24px;
+    padding: 3px 12px;
+    margin: 10px 5px 10px;
+    font-size: 12px;
+    line-height: 24px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s,
+    -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.container .input-group {
+    margin-left: 20px;
+}
+.container h3 {
+	margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+.container h4 {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+/*container样式设置结束*/
+/*footer样式设置开始*/
+.footer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+ #btnEnsure {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#btnMongodb {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#btnMysql {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#btnGoBack {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+/*footer样式设置结束*/

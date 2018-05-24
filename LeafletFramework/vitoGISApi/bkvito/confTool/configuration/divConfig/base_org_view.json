@@ -1,0 +1,24 @@
+{
+  "base_org_view": {
+    "title": "Base_Org",
+    "passPage": {
+      "title": "{ORGNAME}",
+      "url": "../../common/mapPanel/xzqyPanel.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "defaultPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "editPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

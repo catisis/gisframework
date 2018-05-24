@@ -1,0 +1,9 @@
+{
+  "Tools_lz": {
+    "id": "Tools",
+    "widgetUrl": "widgets/Tools_LZ/Tools.js",
+    "widgetConf": "widgets/Tools_LZ/ToolsConf.json",
+    "isUse": true,
+    "title": "工具插件(兰州)"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+    "labelUrl": "",
+    "subdomains": [
+      "0",
+      "1",
+      "2"
+    ],
+    "maxZoom": 18,
+    "minZoom": 5,
+    "crs": "EPSG3857",
+    "tms":true,
+    "visible": true,
+    "center": [
+      39.91349,116.407945
+    ],
+    "initLevel": 15
+  }
+}

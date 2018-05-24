@@ -1,0 +1,22 @@
+{
+  "satellite": {
+    "id": "satellite",
+    "title": "卫星地图",
+    "mapUrl": "http://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}",
+    "labelUrl": "",
+    "subdomains": [
+      "0",
+      "1",
+      "2"
+    ],
+    "maxZoom": 18,
+    "minZoom": 5,
+    "crs": "EPSG3857",
+    "tms":true,
+    "visible": true,
+    "center": [
+      39.91349,116.407945
+    ],
+    "initLevel": 15
+  }
+}

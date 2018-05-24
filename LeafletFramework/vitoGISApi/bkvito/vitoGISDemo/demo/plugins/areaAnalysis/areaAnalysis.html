@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>区域分析示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <button id="areaAnalysis">圈选</button>
+</div>
+<div>将圈选区域的坐标作为url参数传到AreaAnalysis.json所指定的html中</div>
+<script>
+
+    function init() {
+        VitoGIS.init("conf_areaAnalysis.json",function(e){
+            window.gis = e;
+        });
+    }
+
+    var brnAreaAnalysis = document.getElementById("areaAnalysis");
+    brnAreaAnalysis.addEventListener("click", function (e) {
+        gis.areaanalysis.doSelect();
+    });
+</script>
+</body>
+</html>

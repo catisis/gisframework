@@ -1,0 +1,39 @@
+
+.main .article{
+    position: absolute;
+    width: 400px;
+    top: 10px;
+    left: 10px;
+}
+.main .article .title{
+    font-family: 'hero_lightlight';
+    font-size: 50px;
+    text-align: left;
+    letter-spacing: -2px;
+    color: #ffffff;
+    margin:5px;
+}
+.main .article .content{
+    font-family: 'hero_lightlight';
+    font-size: 30px;
+    text-align: left;
+    letter-spacing: -2px;
+    color: #ffffff;
+    margin:5px;
+}
+.main .article .content strong{
+    font-family: 'heroregular';
+    color: #FF0000;
+    font-weight: normal;
+    display: block;
+}
+.main .article .describe{
+    font-family: 'hero_lightlight';
+    font-size: 13px;
+    text-align: left;
+    color: #FFF;
+    line-height: 10px;
+    margin: 0px 5px 0px 9px;
+}
+
+

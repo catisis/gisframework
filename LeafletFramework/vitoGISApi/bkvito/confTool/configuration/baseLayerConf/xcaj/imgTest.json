@@ -1,0 +1,23 @@
+{
+  "imgTest": {
+    "id": "imgTest",
+    "title": "二维地图",
+    "mapUrl": "http://10.161.133.62:8080/geowebcache/service/wmts?service=WMTS&request=GetTile&version=1.0.0&layer=XCAJ_2D&format=image%2Fpng&height=256&width=256&TILEMATRIXSET=EPSG:3857_XCAJ_2D&tilematrix=EPSG:3857_XCAJ_2D:{z}&tilerow={y}&tilecol={x}",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 20,
+    "minZoom": 10,
+    "crs": "EPSG3857",
+    "visible": false,
+    "center": [
+      39.91999268531799,
+      116.39021158218384
+    ],
+    "initLevel": 17
+  }
+}

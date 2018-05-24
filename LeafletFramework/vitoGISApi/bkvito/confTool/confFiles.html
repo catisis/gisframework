@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>地图配置文件设置</title>
+
+    <!-- Bootstrap -->
+    <link href="../../../libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <link rel="stylesheet" href="css/Demo.css"/>
+</head>
+<body>
+
+<!--header开始-->
+<a style="display: none" id="downloadUrl">下载文件</a>
+<!--  <div class="header">
+    <div class="col-md-8">
+        <h1><img src="http://www.bjvito.com/templets/Content/images/logo.png" title="VitoGISConfiguration"></h1>
+    </div>
+    <div class="col-md-4 version">
+        <em>Confinguration Docs for: 0.1.0</em>
+    </div>
+</div> -->
+<!--header结束-->
+
+<div class="">
+    <div class="row clear-margin">
+        <div class="container" id="container">
+
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <!-- Button trigger modal -->
+        <button type="button" id="btnEnsure" class="btn btn-primary"  data-target="#myModal"> 生成并下载配置 </button>
+        <button type="button" id="btnMongodb" class="btn btn-primary"  data-target="#myModal"> 存入mongodb </button>
+        <button type="button" id="btnMysql" class="btn btn-primary"  data-target="#myModal"> 存入mysql </button>
+        <!--<button type="button" id="btnGoBack" class="btn btn-primary"> 返回</button>-->
+        
+    </div>
+</div>
+
+
+
+<!-- 弹出框 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">请填写文件名</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="fileName" class="form-control input-sm" aria-label= "" placeholder="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="btnData">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../../libs/jquery/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../../libs/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script src="../../../libs/artTemplate-master/dist/template.js"></script>
+
+<!--每一块配置文件的html模板-->
+<script id="artContainer" type="text/html">
+    {{each list as value index}}
+    <h3 style="clear: both;">{{list[index][1]}}</h3>
+    <div class="input-group hidden" id="inputText-{{value[0]}}">
+      <span class="input-group-addon">
+        {{list[index][2]}}IP地址
+      </span>
+        <input type="text" class="form-control input-sm" id="input-{{list[index][0]}}" aria-label= "" placeholder="127.0.0.1:8080">
+    </div>
+    <div id="warning-{{list[index][0]}}" class="hidden"></div>
+    <div id="{{list[index][0]}}"></div>
+    {{/each}}
+</script>
+
+<script src="js/variableDefinition.js"></script>
+<script src="js/getConfData.js"></script>
+<script src="js/htmlSource.js"></script>
+<script src="js/cookiesHandle.js"></script>
+<script src="js/validJson.js"></script>
+<script src="js/getCookiesData.js"></script>
+<script src="js/getMapConfigById.js"></script>
+<script src="js/main.js"></script>
+

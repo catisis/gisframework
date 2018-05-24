@@ -1,0 +1,10 @@
+{
+  "ShowCoordinatePoint": {
+    "id":"ShowCoordinatePoint",
+    "widgetUrl": "widgets/ShowCoordinatePoint/ShowCoordinatePoint.js",
+    "widgetConf": "widgets/ShowCoordinatePoint/ShowCoordinatePoint.json",
+    "widgetCSS": "widgets/ShowCoordinatePoint/ShowCoordinatePoint.css",
+    "isUse": true,
+    "title": "显示经纬度"
+  }
+}

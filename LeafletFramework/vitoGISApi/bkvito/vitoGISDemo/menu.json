@@ -1,0 +1,122 @@
+{
+  "showMap": {
+    "name": "展示地图",
+    "url": "demo/showMap/showMap.html",
+    "jsonUrl": "demo/showMap/conf_showMap.json"
+  },
+  "mapEvent": {
+    "name": "地图事件",
+    "url": "demo/mapEvent/mapEvents.html",
+    "jsonUrl": "demo/mapEvent/conf_Events.json"
+  },
+  "changeLayer": {
+    "name": "切换图层",
+    "url": "demo/changeLayer/changeLayer.html",
+    "jsonUrl": "demo/changeLayer/conf_changeLayer.json"
+  },
+  "infoWindow": {
+    "name": "信息窗口",
+    "submenu": {
+      "bindInfoWindow": {
+        "name": "绑定信息窗口",
+        "url": "demo/infoWindow/bindInfoWindow/infoWindow.html",
+        "jsonUrl": "demo/infoWindow/bindInfoWindow/conf_infoWindow.json"
+      },
+      "noInfoWindow": {
+        "name": "不绑定信息窗口",
+        "url": "demo/infoWindow/noInfoWindow/notBindInfoWindow.html",
+        "jsonUrl": "demo/infoWindow/noInfoWindow/conf_notBindInfoWindow.json"
+      }
+    }
+  },
+  "draw": {
+    "name": "绘制",
+    "url": "demo/draw/draw.html",
+    "jsonUrl": "demo/draw/conf_draw.json"
+  },
+  "handleFeature": {
+    "name": "增删改查",
+    "submenu": {
+      "insert": {
+        "name": "添加要素",
+        "url": "demo/handleFeature/insert/insert.html",
+        "jsonUrl": "demo/handleFeature/insert/conf_insert.json"
+      },
+      "delete": {
+        "name": "删除要素",
+        "url": "demo/handleFeature/delete/delete.html",
+        "jsonUrl": "demo/handleFeature/delete/conf_delete.json"
+      },
+      "update": {
+        "name": "更改要素属性",
+        "url": "demo/handleFeature/update/update.html",
+        "jsonUrl": "../handleFeature/update/conf_update.json"
+      },
+      "query": {
+        "name": "查询要素",
+        "url": "demo/handleFeature/query/query.html",
+        "jsonUrl": "demo/handleFeature/query/conf_query.json"
+      }
+    }
+  },
+  "tool": {
+    "name": "工具",
+    "url": "demo/tool/tools.html",
+    "jsonUrl": "demo/tool/conf_tools.json"
+  },
+  "location": {
+    "name": "定位",
+    "submenu": {
+      "zoomToWKT": {
+        "name": "WKT定位",
+        "url": "demo/zoomToWKT/zoomToWKT.html",
+        "jsonUrl": "demo/zoomToWKT/conf_zoomToWKT.json"
+      },
+      "zoomToPoints": {
+        "name": "POINTS定位",
+        "url": "demo/zoomToWKT/zoomToPoints.html",
+        "jsonUrl": "demo/zoomToWKT/conf_zoomToWKT.json"
+      }
+    }
+  },
+  "plugins": {
+    "name": "插件",
+    "submenu": {
+      "areaAnalysis": {
+        "name": "区域分析",
+        "url": "demo/plugins/areaAnalysis/areaAnalysis.html",
+        "jsonUrl": "demo/plugins/areaAnalysis/conf_areaAnalysis.json"
+      },
+      "jiejing": {
+        "name": "街景",
+        "url": "demo/plugins/jiejing/jiejing.html",
+        "jsonUrl": "demo/plugins/jiejing/conf_jiejing.json"
+      },
+      "routePlayer": {
+        "name": "轨迹",
+        "url": "demo/plugins/routePlayer/RoutePlayer.html",
+        "jsonUrl": "demo/plugins/routePlayer/conf_RoutePlayer.json"
+      },
+      "showCoordinatePoint": {
+        "name": "显示经纬度",
+        "url": "demo/plugins/showCoordinatePoint/showCoordinatePoint.html",
+        "jsonUrl": "demo/plugins/showCoordinatePoint/conf_showCoordinatePoint.json"
+      },
+      "LocatingPoint": {
+        "name": "显示定位点的区域",
+        "url": "demo/plugins/location/LocatingPoint.html",
+        "jsonUrl": "demo/plugins/location/conf_LocatingPoint.json"
+      },
+      "MonitorPoint": {
+        "name": "运行监控定位",
+        "url": "demo/plugins/Monitor/monitor.html",
+        "jsonUrl": "demo/plugins/Monitor/conf_monitor.json"
+      },
+      "newMonitorPoint": {
+        "name": "运行监控定位(新)",
+        "url": "demo/plugins/Monitor/newMonitor.html",
+        "jsonUrl": "demo/plugins/Monitor/conf_monitor.json"
+      }
+    }
+  }
+}

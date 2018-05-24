@@ -1,0 +1,19 @@
+{
+  "disputepanel": {
+    "title": "DISPUTE_REPORT",
+    "defaultPage": {
+      "title": "事件详情",
+      "url": "../../common/mapPanel/dispute_reportPanel.html",
+      "width": 650,
+      "height": 380,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "editPage": {
+      "title": "事件上报",
+      "url": "../../common/mapPanel/dispute_submitPanel.html",
+      "width": 650,
+      "height": 380,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

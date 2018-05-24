@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>图层切换示例</title>
+    <script src="../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div id="featureLayer" >
+    <button id="point">点</button>
+    <button id="polyline">线</button>
+    <button id="polygon">面</button>
+</div>
+<script>
+    var changeFeatureLayerConf = function (type) {
+        var conf = gis.layerManager.configManager.getFeatureLayersConf();
+        for (var index in conf) {
+            conf[index]["visible"] = false;
+        }
+
+        conf[type]["visible"] = true;
+        gis.layerManager.configManager.setFeatureLayersConf(conf);
+        gis.layerManager.loadLayers();
+    };
+    var layersConf = "";
+    function init() {
+        VitoGIS.init("conf_changeLayer.json",function(e){
+            window.gis = e;
+            layersConf = gis.layerManager.configManager.getFeatureLayersConf();//获取配置文件中要素的内容
+        });
+    }
+    var btnQX = document.getElementById("point");
+    var btnJD = document.getElementById("polyline");
+    var btnSQ = document.getElementById("polygon");
+    btnQX.addEventListener("click",function(e){
+        gis.layerManager.openLayer("POINT");
+        var defaultZoom = layersConf["POINT"].defaultZoom;//将地图缩放到显示这个要素的默认级别
+        gis.mapManager.map.setZoom(defaultZoom);
+        changeFeatureLayerConf("POINT")
+    });
+    btnJD.addEventListener("click",function(e){
+        gis.layerManager.openLayer("POLYLINE");
+        var defaultZoom =layersConf["POLYLINE"].defaultZoom;
+        gis.mapManager.map.setZoom(defaultZoom);
+        changeFeatureLayerConf("POLYLINE")
+    });
+    btnSQ.addEventListener("click",function(e){
+        gis.layerManager.openLayer("POLYGON");
+        var defaultZoom =layersConf["POLYGON"].defaultZoom;
+        gis.mapManager.map.setZoom(defaultZoom);
+        changeFeatureLayerConf("POLYGON")
+    });
+</script>
+
+
+
+
+</body>
+</html>

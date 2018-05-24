@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>zoomToWKT示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+
+        .test {
+
+        }
+        .leaflet-pane {
+            width: 100%;
+        }
+        .monitorLabel {
+            margin-left: 22px !important;
+            margin-top: -33px !important;
+            width: auto !important;
+            height: 18px !important;
+            border-radius: 18px;
+            padding: 6px 10px;
+        }
+        .blue {
+            background: lightskyblue;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+
+</div>
+<script>
+
+    function init() {
+        VitoGIS.init("conf_monitor.json", function (e) {
+            window.gis = e;
+            gis.Events.on("MONITORPOINT", function (e) {
+                gis.monitorpoint.location(point,{icon: myIcon},'<div style="width: 100px;height: 100px;"><button onclick="gis.monitorpoint.removeMark()">删除marker</button></div>');
+                gis.monitorpoint.location(point2,{icon: myIcon},'',10000);
+            });
+        });
+    }
+
+
+    var point = [39.905989,116.435285];
+    var point2 = [39.904989,116.405285];
+
+    var myIcon = L.icon({
+        iconUrl: 'image/poi/default-DJ_Organizationwork.png',
+        className: 'myIcon',
+        iconSize: [44, 33],
+        iconAnchor: [22, 32]
+    });
+
+</script>
+</body>
+</html>>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arcgis地图</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../dist/leaflet.css"/>
+
+    <link rel="stylesheet" href="../css/mobile.css"/>
+
+    <script type="text/javascript" src="../../build/deps.js"></script>
+    <script src="../leaflet-include.js"></script>
+    <style>
+        .tools {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+<div class="tools">
+    <button onclick="map.zoomIn()">放大</button>
+    <button onclick="map.zoomOut()">缩小</button>
+    <button onclick="map.setView([36.574524678729766,104.0487028844058])">定位</button>
+</div>
+
+<script type="text/javascript">
+    var map = new L.Map('map'
+            , {
+                crs: L.CRS.EPSG3857LZ
+            }
+    );
+
+    var my = L.tileLayer("http://61.178.48.61:8399/arcgis/rest/services/LZ20150916/MapServer/tile/{z}/{y}/{x}", {
+        maxZoom: 20,
+        minZoom: 12,
+        tileSize: 128,
+        zoomOffset: -12
+    }).addTo(map);
+
+    var cen = L.marker([36.31710812117268, 103.76209259027789]).addTo(map)
+    cen.bindPopup('我是中心点').addTo(map);
+    map.setView([36.31710812117268, 103.76209259027789], 1);
+
+</script>
+</body>
+</html>

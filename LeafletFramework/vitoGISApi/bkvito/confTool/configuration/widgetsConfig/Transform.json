@@ -1,0 +1,9 @@
+{
+  "Transform": {
+    "id": "Transform",
+    "widgetUrl": "widgets/Transform/Transform.js",
+    "widgetConf": "widgets/Transform/TransformConf.json",
+    "isUse": true,
+    "title": "坐标转换插件"
+  }
+}

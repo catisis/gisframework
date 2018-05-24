@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet debug page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../../dist/leaflet.css" />
+    <link rel="stylesheet" href="../css/mobile.css" />
+
+    <script type="text/javascript" src="../../build/deps.js"></script>
+    <script src="../leaflet-include.js"></script>
+
+</head>
+<body>
+
+<div id="map"></div>
+
+<script type="text/javascript">
+
+
+    var osmTileUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var basemap = new L.TileLayer(osmTileUrl, {maxZoom: 18});
+
+    var map = new L.Map('map', {
+        layers: [basemap],
+        center: new L.LatLng(53.2, 5.8), zoom: 12
+    });
+
+    new L.Control.GeoSearch({
+
+        provider: new L.GeoSearch.Provider.Bing({
+            // request your free key at: bingmapsportal.com
+            key: '__YOUR_BING_API_KEY_HERE__'
+        })
+    }).addTo(map);
+</script>
+</body>
+</html>

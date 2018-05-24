@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>要素不绑定弹窗示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <div>代码和要素绑定窗口的一样，需要改的是配置文件。</div>
+    <div>将要素的info属性的值改成"",要素不再绑定信息窗口</div>
+    <div>点击要素将不再弹出信息窗口,通过监听事件，自定义点击后的程序</div>
+</div>
+<script>
+    function init() {
+        VitoGIS.init("conf_notBindInfoWindow.json",function(e){
+            window.gis = e;
+            //绑定要素的单击事件
+            gis.Events.on("FEATURECLICK", function (e) {
+                alert("要素没有绑定信息窗口，而是监听了要素的click事件");
+                console.log(e);
+            });
+            gis.Events.on("RIGHTCLICK", function (e) {
+                alert("监听了要素的右击事件");
+                console.log(e);
+            });
+        });
+    }
+</script>
+</body>
+</html>

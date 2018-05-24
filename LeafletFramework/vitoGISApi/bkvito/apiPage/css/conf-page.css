@@ -1,0 +1,53 @@
+
+/*h5 {*/
+    /*padding: 0.5rem 0;*/
+    /*color: #414141;*/
+/*}*/
+
+ul>h4 {
+    margin: 10px 0 0 0;
+}
+pre {
+
+    box-shadow: inset 0 0 6px #ddd;
+    background-color: #F5F4F4;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 0;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.2rem;
+}
+table {
+    margin: 10px 0 15px 0;
+    border-collapse: collapse;
+    font-size: 20px;
+    line-height: 10px;
+}
+td,th {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    font-size:0.8rem;
+    line-height: 1rem;
+}
+.showmap-2 {
+    line-height: 2rem;
+}
+.ds-thread {
+    margin-top: 80px;
+}
+#abc {
+    min-height: 350px;
+}
+ol li {
+    font-size: 0.9rem;
+    line-height: 1rem;;
+}
+code{
+    font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    font-size: 0.8rem;
+}
+
+

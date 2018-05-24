@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>地图事件示例</title>
+    <script src="../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+<button id="tg">切换单击和双击事件</button>
+</div>
+<script>
+    var doubleClick = false;
+    var btnTg = document.getElementById("tg");
+    var tempArr = [];
+    function init() {
+        VitoGIS.init("conf_Events.json",function(e){
+            window.gis = e;
+            gis.Events.on("MAPCLICK", function (e) {
+                alert(e.latlng.lat + "," + e.latlng.lng);
+            });
+            gis.Events.on("RIGHTCLICK", function (e) {
+                alert("触发了右击事件");
+            });
+            gis.Events.on("ZOOMCHANGE", function (e) {
+                alert("缩放了地图");
+            });
+            gis.Events.on("MOVECHANGE", function (e) {
+                alert("移动了地图");
+            });
+        });
+    }
+
+    btnTg.addEventListener("click", function (e) {
+        if(doubleClick){
+            doubleClick = false;
+            gis.Events.on("MAPCLICK", function (e) {
+                alert(e.latlng.lat + "," + e.latlng.lng);
+            });
+            gis.Events.off("MAPDBCLICK");
+        } else {
+            doubleClick = true;
+            gis.Events.on("MAPDBCLICK", function (e) {
+                alert("触发了双击事件");
+            });
+            gis.Events.off("MAPCLICK");
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "Tools": {
+    "id": "Tools",
+    "widgetUrl": "widgets/Tools/Tools.js",
+    "widgetConf": "widgets/Tools/ToolsConf.json",
+    "isUse": true,
+    "title": "工具插件"
+  }
+}

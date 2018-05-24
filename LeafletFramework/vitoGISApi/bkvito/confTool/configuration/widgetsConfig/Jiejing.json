@@ -1,0 +1,9 @@
+{
+  "Jiejing": {
+    "id": "Jiejing",
+    "widgetUrl": "widgets/Jiejing/Jiejing.js",
+    "widgetConf": "widgets/Jiejing/JiejingConf.json",
+    "isUse": true,
+    "title": "街景"
+  }
+}

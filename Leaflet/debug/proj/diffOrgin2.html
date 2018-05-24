@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不同坐标原点地图</title>
+    <link rel="stylesheet" href="../../dist/leaflet.css"/>
+    <link rel="stylesheet" href="../css/screen.css"/>
+    <script type="text/javascript" src="../../build/deps.js"></script>
+    <script src="../leaflet-include.js"></script>
+</head>
+<body>
+<div id="map"></div>
+</body>
+<script>
+    function getRes(level) {
+        var res = [];
+        res[0] = 0.7039130078471674922084422659391;
+        for (var i = 1; i < level; i++) {
+            res[i] = res[i - 1] / 2;
+        }
+        return res;
+    }
+    var crs = new L.Proj.CRS('EPSG:4326',
+                    '+proj=longlat +datum=WGS84 +no_defs ',
+                    {
+                        resolutions: getRes(21),
+                        origin: [-180,90]
+                    }),
+            map = new L.Map('map', {
+                crs: L.CRS.EPSG4326
+            });
+    var my25 = L.tileLayer('http://192.168.0.191:8090/iserver/services/map-instance10/wmts-china/mapby/default/custom_mapby/{z}/{y}/{x}.png', {
+        maxZoom: 20,
+        minZoom: 1,
+        attribution: 'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, Imagery &copy; 2013 <a href="http://www.kartena.se/">Kartena</a>'
+    }).addTo(map);
+    map.setView([26.684382425755466,106.63894144148654], 15);
+
+</script>
+</html>

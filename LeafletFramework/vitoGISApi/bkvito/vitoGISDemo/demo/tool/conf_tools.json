@@ -1,0 +1,58 @@
+{
+  "baseLayerConf": {
+    "defaultLayer": {
+      "id": "defaultLayer",
+      "title": "默认地图",
+      "mapUrl": "http://api{s}.map.bdimg.com/customimage/tile?&x={x}&y={y}&z={z}&udt=20160928&scale=1",
+      "labelUrl": "",
+      "subdomains": [
+        "0",
+        "1",
+        "2"
+      ],
+      "maxZoom": 18,
+      "minZoom": 5,
+      "crs": "BAIDU",
+      "tms":true,
+      "visible": true,
+      "center": [
+        39.91349,116.407945
+      ],
+      "initLevel": 15
+    }
+  },
+  "featureLayersConf": {
+    "BASE_ORINIT": {
+      "isShow": false,
+      "isDraw": false,
+      "geom_field": "GEOM",
+      "crs": "EPSG3395",
+      "netSP": "https://www.baidu.com",
+      "nameSpace": "dy",
+      "serverType": "OGC",
+      "info": "",
+      "visible": false,
+      "filter": "LEVELID in (10000007770007)",
+      "tableName": "BASE_ORG",
+      "auto": false,
+      "title": "初始化区域",
+      "url": "/proxy",
+      "geoType": "polygon"
+    }
+  },
+  "widgetsConfig": {
+    "Tools": {
+      "id":"Tools",
+      "widgetUrl": "/dist/widgets/Tools/Tools.js",
+      "widgetConf": "/dist/widgets/Tools/ToolsConf.json",
+      "isUse": true
+    },
+    "Transform": {
+      "id":"Transform",
+      "widgetUrl": "/dist/widgets/transform/Transform.js",
+      "widgetConf": "/dist/widgets/transform/TransformConf.json",
+      "isUse": true
+    }
+  }
+
+}

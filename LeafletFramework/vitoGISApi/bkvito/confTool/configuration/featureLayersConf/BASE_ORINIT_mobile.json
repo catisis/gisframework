@@ -1,0 +1,18 @@
+{
+  "BASE_ORINIT_mobile": {
+    "isShow": false,
+    "geom_field": "GEOM",
+    "crs": "EPSG3395",
+    "netSP": "https://www.baidu.com",
+    "nameSpace": "dy",
+    "serverType": "OGC",
+    "info": "",
+    "visible": false,
+    "filter": "LEVELID in (10000007770007)",
+    "tableName": "BASE_ORG",
+    "auto": false,
+    "title": "手机端初始化区域",
+    "url": "http://192.168.0.222:8091/geoserver/dy/ows",
+    "geoType": "polygon"
+  }
+}

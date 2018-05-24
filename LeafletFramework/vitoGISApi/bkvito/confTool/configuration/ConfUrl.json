@@ -1,0 +1,544 @@
+{
+  "area": {
+    "xichanganjie": "西长安街",
+    "suifenhe": "绥芬河",
+    "guiyang": "贵阳",    
+    "dongying": "东营现场",
+    "dy":"东营演示",
+    "biaozhun":"东营标准",
+    "test":"东营测试",
+    "lanzhou": "兰州",
+    "GX": "珙县",
+    "edj": "e党建",
+    "baidu": "百度地图",
+    "openTreeMap": "openTreeMap",
+    "tianditu": "天地图",
+    "amap": "高德地图"
+  },
+  "defaultIP": {
+    "xichanganjie": {
+      "mapIP": "192.168.0.80:8060",
+      "featureIP": "192.168.0.80:8080"
+    },
+    "suifenhe": {
+	  "mapIP": "192.168.0.80:8060",
+      "featureIP": "192.168.0.80:8080"
+    },
+    "guiyang": {
+	  "mapIP": "192.168.0.80:8060",
+      "featureIP": "192.168.0.80:8080"
+    },
+    "dongying": {
+      "mapIP": "192.168.0.80:8070",
+      "featureIP": "192.168.0.80:8080"
+    },
+    "dy": {
+      "mapIP": "116.213.144.136:8090",
+      "featureIP": "192.168.0.222:8090"
+    },
+    "biaozhun": {
+      "mapIP": "116.213.144.136:8090",
+      "featureIP": "192.168.0.222:8090"
+    },
+    "test": {
+      "mapIP": "116.213.144.136:8090",
+      "featureIP": "192.168.0.222:8090"
+    },
+    "lanzhou": {
+	  "mapIP": "192.168.0.188:6080",
+      "featureIP": "192.168.0.80:8080"
+    },
+    "GX": {
+	  "mapIP": "125.64.222.249:8090"
+    },
+    "edj": {
+	  "mapIP": "192.168.0.80:8060",
+      "featureIP": "192.168.0.80:8080"
+    },
+    "baidu": {
+      "mapIP": "127.0.0.1:8080",
+      "featureIP": "127.0.0.1:8080"
+    },
+    "openTreeMap": {
+      "mapIP": "127.0.0.1:8080",
+      "featureIP": "127.0.0.1:8080"
+    },
+    "tianditu": {
+      "mapIP": "127.0.0.1:8080",
+      "featureIP": "127.0.0.1:8080"
+    },
+    "amap": {
+      "mapIP": "127.0.0.1:8080",
+      "featureIP": "127.0.0.1:8080"
+    }
+  },
+  "featureCRS":{ 
+    "xichanganjie": "EPSG3395",
+    "suifenhe": "EPSG3395",
+    "guiyang": "EPSG3395",
+    "dongying": "EPSG3395",
+    "dy":"EPSG3395",
+    "biaozhun":"EPSG3395",
+    "test":"EPSG3395",
+    "lanzhou": "EPSG3395",
+    "GX": "EPSG3395",
+    "edj": "EPSG4326"
+  },
+  "featureNetSP": {
+  	"xichanganjie": "http://www.bkvito.com/xichanganjie",
+  	"suifenhe": "http://www.bkvito.com/suifenhe",
+  	"guiyang": "http://www.bkvito.com/guiyang",
+  	"dongying": "http://www.bkvito.com/dongying",
+  	"dy":"http://www.bkvito.com/dy",
+  	"biaozhun":"http://www.bkvito.com/biaozhun",
+  	"test":"http://www.bkvito.com/test",
+    "lanzhou": "http://www.bkvito.com/lanzhou",
+  	"guiyang": "http://www.bkvito.com/guiyang",
+  	"GX": "http://www.baidu.com",
+  	"edj": "https://www.baidu.com/edj"
+  },
+  "baseLayerConf": {
+    "xichanganjie": {
+      "defaultLayer": "configuration/baseLayerConf/xcaj/defaultLayer.json",
+      "imgTest": "configuration/baseLayerConf/xcaj/imgTest.json",
+      "amap": "configuration/baseLayerConf/xcaj/amap.json"
+    },
+    "suifenhe": {
+  		"defaultLayer": "configuration/baseLayerConf/sfh/defaultLayer.json",  		
+  		"imgTest": "configuration/baseLayerConf/sfh/imgTest.json",
+  		"amap": "configuration/baseLayerConf/sfh/amap.json"
+  	},
+  	"guiyang": {
+  	  "defaultLayer": "configuration/baseLayerConf/gy/defaultLayer.json",
+      "amap": "configuration/baseLayerConf/gy/amap.json"
+  	},
+  	"dongying": {
+  		"defaultLayer": "configuration/baseLayerConf/dy_xianchang/defaultLayer.json",
+  		"d3r": "configuration/baseLayerConf/dy_xianchang/d3r.json",
+  		"imgTest": "configuration/baseLayerConf/dy_xianchang/imgTest.json",
+  		"amap": "configuration/baseLayerConf/dy_xianchang/amap.json"
+  	},
+  	"dy": {
+  		"defaultLayer": "configuration/baseLayerConf/dy_yanshi/defaultLayer.json",
+  		"d3r": "configuration/baseLayerConf/dy_yanshi/d3r.json",
+  		"imgTest": "configuration/baseLayerConf/dy_yanshi/imgTest.json",
+  		"amap": "configuration/baseLayerConf/dy_yanshi/amap.json"
+  	},
+  	"biaozhun":{
+  	    "defaultLayer": "configuration/baseLayerConf/dy_biaozhun/defaultLayer.json",
+  		"d3r": "configuration/baseLayerConf/dy_biaozhun/d3r.json",
+  		"imgTest": "configuration/baseLayerConf/dy_biaozhun/imgTest.json",
+  		"amap": "configuration/baseLayerConf/dy_biaozhun/amap.json"  	
+  	},
+  	"test":{
+  	    "defaultLayer": "configuration/baseLayerConf/dy_ceshi/defaultLayer.json",
+  		"d3r": "configuration/baseLayerConf/dy_ceshi/d3r.json",
+  		"imgTest": "configuration/baseLayerConf/dy_ceshi/imgTest.json",
+  		"amap": "configuration/baseLayerConf/dy_ceshi/amap.json"  	
+  	},
+  	"lanzhou": {
+  	  "defaultLayer": "configuration/baseLayerConf/lz/defaultLayer.json",
+      "amap": "configuration/baseLayerConf/lz/amap.json"
+  	},
+    "GX": {
+      "defaultLayer": "configuration/baseLayerConf/GX/defaultLayer.json",
+      "amap": "configuration/baseLayerConf/GX/amap.json"
+    },
+    "edj": {
+    	"defaultLayer": "configuration/baseLayerConf/edj/defaultLayer.json",
+    	"amap": "configuration/baseLayerConf/edj/amap.json"
+    },
+    "baidu": {
+      "defaultLayer": "configuration/baseLayerConf/baidu/defaultLayer.json",
+      "satellite": "configuration/baseLayerConf/baidu/satellite.json"
+    },
+    "openTreeMap": {
+      "defaultLayer": "configuration/baseLayerConf/openTreeMap/defaultLayer.json"
+    },
+    "tianditu": {
+      "defaultLayer": "configuration/baseLayerConf/tianditu/defaultLayer.json",
+      "d3": "configuration/baseLayerConf/tianditu/d3.json"
+    },
+    "amap": {
+      "defaultLayer": "configuration/baseLayerConf/amap/defaultLayer.json",
+      "satellite": "configuration/baseLayerConf/amap/satellite.json"
+    }
+  },
+  "featureLayersConf": {
+    "BASE_ORINIT": "configuration/featureLayersConf/BASE_ORINIT.json",
+    "BASE_ORGQX": "configuration/featureLayersConf/BASE_ORGQX.json",
+    "BASE_ORGJD": "configuration/featureLayersConf/BASE_ORGJD.json",
+    "BASE_ORGSQ": "configuration/featureLayersConf/BASE_ORGSQ.json",
+    "BASE_ORGWG": "configuration/featureLayersConf/BASE_ORGWG.json",
+    "D_BUILDING": "configuration/featureLayersConf/D_BUILDING.json",
+    "YLWS_HYGIENEORG": "configuration/featureLayersConf/YLWS_HYGIENEORG.json",
+    "CJR_DISABLEDORG": "configuration/featureLayersConf/CJR_DISABLEDORG.json",
+    "ZHZL_KEYAREAS": "configuration/featureLayersConf/ZHZL_KEYAREAS.json",
+    "ZHZL_KEYAREA": "configuration/featureLayersConf/ZHZL_KEYAREA.json",
+    "STANDING_BOOK": "configuration/featureLayersConf/STANDING_BOOK.json",
+    "CASE_BKGD_INFO": "configuration/featureLayersConf/CASE_BKGD_INFO.json",
+    "ZHZL_KEYPLACE": "configuration/featureLayersConf/ZHZL_KEYPLACE.json",
+    "ZHZL_KEYSECTIONS": "configuration/featureLayersConf/ZHZL_KEYSECTIONS.json",
+    "ZHZL_MASSESTREATORG": "configuration/featureLayersConf/ZHZL_MASSESTREATORG.json",
+    "TYZX_RELIGIOUSORG": "configuration/featureLayersConf/TYZX_RELIGIOUSORG.json",
+    "D_COMMUNITYUNDERSPACEINFO": "configuration/featureLayersConf/D_COMMUNITYUNDERSPACEINFO.json",
+    "dispute": "configuration/featureLayersConf/dispute.json",
+    "call": "configuration/featureLayersConf/call.json",
+    "DJ_PARTY": "configuration/featureLayersConf/DJ_PARTY.json",
+    "LY_EVENTS": "configuration/featureLayersConf/LY_EVENTS.json",
+    "WHFW_ACTIVITIESCENTER": "configuration/featureLayersConf/WHFW_ACTIVITIESCENTER.json",
+    "LY_SCENICSPOT": "configuration/featureLayersConf/LY_SCENICSPOT.json",
+    "D_VIDEOMONITOR": "configuration/featureLayersConf/D_VIDEOMONITOR.json",
+    "DJ_NEWPUBLICSCHOOL": "configuration/featureLayersConf/DJ_NEWPUBLICSCHOOL.json",
+    "DISPUTE_REPORT": "configuration/featureLayersConf/DISPUTE_REPORT.json",
+    "CT_WATERFACILITIES": "configuration/featureLayersConf/CT_WATERFACILITIES.json",
+    "CT_WATERSOURCE": "configuration/featureLayersConf/CT_WATERSOURCE.json",
+    "CT_IRRIGATIONAREA": "configuration/featureLayersConf/CT_IRRIGATIONAREA.json",
+    "CT_UNCULTIVATEDLAND": "configuration/featureLayersConf/CT_UNCULTIVATEDLAND.json",
+    "CT_FERRY": "configuration/featureLayersConf/CT_FERRY.json",
+    "CT_BRIDGE": "configuration/featureLayersConf/CT_BRIDGE.json",
+    "ECS_COMP_LIBRARY": "configuration/featureLayersConf/ECS_COMP_LIBRARY.json",
+    "CT_TUNNEL": "configuration/featureLayersConf/CT_TUNNEL.json",
+    "CT_ROAD": "configuration/featureLayersConf/CT_ROAD.json",
+    "NR_NATIONALRELIGIONORG":"configuration/featureLayersConf/NR_NATIONALRELIGIONORG.json",
+    "NR_RELIGIOUSPLACE": "configuration/featureLayersConf/NR_RELIGIOUSPLACE.json",
+    "NR_NATIONALENTERPRISE": "configuration/featureLayersConf/NR_NATIONALENTERPRISE.json",
+    "NR_NATIONALEDUCATION": "configuration/featureLayersConf/NR_NATIONALEDUCATION.json",
+    "NR_RELIGIOUSGROUP": "configuration/featureLayersConf/NR_RELIGIOUSGROUP.json",
+    "C_ACTIVITY": "configuration/featureLayersConf/C_ACTIVITY.json",
+    "DJ_GeneralActivity": "configuration/featureLayersConf/DYDJ_GeneralActivity.json",
+    "DJ_Party": "configuration/featureLayersConf/DYDJ_Party.json",
+    "DJ_NewPublicSchool": "configuration/featureLayersConf/DYDJ_NewPublicSchool.json",
+    "activity_base": "configuration/featureLayersConf/activity_base.json",
+    "WHFW_SQUARE": "configuration/featureLayersConf/WHFW_SQUARE.json",
+    "ZHZL_PROJECTBOOK": "configuration/featureLayersConf/ZHZL_PROJECTBOOK.json"
+  },
+  "widgetsConfig": {
+    "CircleViewWidget": "configuration/widgetsConfig/CircleViewWidget.json",
+    "Overview": "configuration/widgetsConfig/Overview.json",
+    "Tools": "configuration/widgetsConfig/Tools.json",
+    "Transform": "configuration/widgetsConfig/Transform.json",
+    "AreaAnalysis": "configuration/widgetsConfig/AreaAnalysis.json",
+    "AreaAnalysis_gy": "configuration/widgetsConfig/AreaAnalysis_gy.json",
+    "RoutePlayer": "configuration/widgetsConfig/RoutePlayer.json",
+    "ShowCoordinatePoint": "configuration/widgetsConfig/ShowCoordinatePoint.json",
+    "Jiejing": "configuration/widgetsConfig/Jiejing.json",
+    "Tools_gy": "configuration/widgetsConfig/Tools_gy.json",
+    "HeatMap": "configuration/widgetsConfig/HeatMap.json"
+  },
+  "divConfig": {
+    "ecs_comp_library": "configuration/divConfig/ecs_comp_library.json",
+    "ct_ferry": "configuration/divConfig/ct_ferry.json",
+    "ct_bridge": "configuration/divConfig/ct_bridge.json",
+    "ct_uncultivatedland": "configuration/divConfig/ct_uncultivatedland.json",
+    "ct_tunnel": "configuration/divConfig/ct_tunnel.json",
+    "ct_road": "configuration/divConfig/ct_road.json",
+    "ct_watersource": "configuration/divConfig/ct_watersource.json",
+    "d_communityunderspaceinfo": "configuration/divConfig/d_communityunderspaceinfo.json",
+    "DrawPanel": "configuration/divConfig/DrawPanel.json",
+    "r_people": "configuration/divConfig/r_people.json",
+    "zz_corp": "configuration/divConfig/zz_corp.json",
+    "xzqpanle": "configuration/divConfig/xzqpanle.json",
+    "eventinfo": "configuration/divConfig/eventinfo.json",
+    "dj_party": "configuration/divConfig/dj_party.json",
+    "dj_organizationwork": "configuration/divConfig/dj_organizationwork.json",
+    "dj_volunteerservice": "configuration/divConfig/dj_volunteerservice.json",
+    "dj_activitywish": "configuration/divConfig/dj_activitywish.json",
+    "base_org_view": "configuration/divConfig/base_org_view.json",
+    "base_org": "configuration/divConfig/base_org.json",
+    "cjr_disabledorg": "configuration/divConfig/cjr_disabledorg.json",
+    "ct_waterfacilities": "configuration/divConfig/ct_waterfacilities.json",
+    "ct_irrigationarea": "configuration/divConfig/ct_irrigationarea.json",
+    "ly_events": "configuration/divConfig/ly_events.json",
+    "whfw_activitiescenter": "configuration/divConfig/whfw_activitiescenter.json",
+    "ly_scenicspot": "configuration/divConfig/ly_scenicspot.json",
+    "d_videomonitor": "configuration/divConfig/d_videomonitor.json",
+    "tyzx_religiousorg": "configuration/divConfig/tyzx_religiousorg.json",
+    "zhzl_massestreatorg": "configuration/divConfig/zhzl_massestreatorg.json",
+    "zhzl_keysections": "configuration/divConfig/zhzl_keysections.json",
+    "zhzl_keyareas": "configuration/divConfig/zhzl_keyareas.json",
+    "zhzl_keyarea": "configuration/divConfig/zhzl_keyarea.json",
+    "standing_book": "configuration/divConfig/standing_book.json",
+    "case_bkgd_info": "configuration/divConfig/case_bkgd_info.json",
+    "zhzl_keyplace": "configuration/divConfig/zhzl_keyplace.json",
+    "d_building_view": "configuration/divConfig/d_building_view.json",
+    "d_building": "configuration/divConfig/d_building.json",
+    "disputepanel": "configuration/divConfig/disputepanel.json",
+    "griderpanel": "configuration/divConfig/griderpanel.json",
+    "vitoperson": "configuration/divConfig/vitoperson.json",
+    "nr_nationalreligionorg": "configuration/divConfig/nr_nationalreligionorg.json",
+    "nr_religiousplace": "configuration/divConfig/nr_religiousplace.json",
+    "nr_nationalenterprise": "configuration/divConfig/nr_nationalenterprise.json",
+    "nr_nationaleducation": "configuration/divConfig/nr_nationaleducation.json",
+    "nr_religiousgroup": "configuration/divConfig/nr_religiousgroup.json",
+    "c_activity": "configuration/divConfig/c_activity.json",
+    "DJ_GeneralActivity": "configuration/divConfig/DYDJ_GeneralActivity.json",
+    "DJ_NewPublicSchool": "configuration/divConfig/DYDJ_NewPublicSchool.json",
+    "DJ_Party": "configuration/divConfig/DYDJ_Party.json",
+    "View": "configuration/divConfig/DYDJView.json",
+    "dj_partymember": "configuration/divConfig/dj_partymember.json",
+    "whfw_square": "configuration/divConfig/whfw_square.json",
+    "zhzl_projectbook": "configuration/divConfig/zhzl_projectbook.json"
+  },
+  "level": {
+    "xichanganjie": {
+      "BASE_ORGQX": {
+        "minZoom": 14,
+        "defaultZoom": 14,
+        "maxZoom": 18
+      },
+      "BASE_ORGJD": {
+        "minZoom": 14,
+        "defaultZoom": 14,
+        "maxZoom": 18
+      },
+      "BASE_ORGSQ": {
+        "minZoom": 15,
+        "defaultZoom": 15,
+        "maxZoom": 18
+      },
+      "BASE_ORGWG": {
+        "minZoom": 15,
+        "defaultZoom": 16,
+        "maxZoom": 18
+      },
+      "D_BUILDING": {
+        "minZoom": 16,
+        "defaultZoom": 17,
+        "maxZoom": 19
+      }
+    },
+    "dongying": {
+      "BASE_ORGQX": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 10,
+        "maxZoom": 17
+      },
+      "BASE_ORGJD": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 12,
+        "maxZoom": 17
+      },
+      "BASE_ORGSQ": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "BASE_ORGWG": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 15,
+        "maxZoom": 17
+      },
+      "D_BUILDING": {
+        "minZoom": 15,
+        "defaultZoom": 16,
+        "maxZoom": 19
+      }
+    },
+    "dy": {
+      "BASE_ORGQX": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 10,
+        "maxZoom": 17
+      },
+      "BASE_ORGJD": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 12,
+        "maxZoom": 17
+      },
+      "BASE_ORGSQ": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "BASE_ORGWG": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 15,
+        "maxZoom": 17
+      },
+      "D_BUILDING": {
+        "minZoom": 15,
+        "defaultZoom": 16,
+        "maxZoom": 19
+      }
+    },
+    "biaozhun": {
+      "BASE_ORGQX": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 10,
+        "maxZoom": 17
+      },
+      "BASE_ORGJD": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 12,
+        "maxZoom": 17
+      },
+      "BASE_ORGSQ": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "BASE_ORGWG": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 15,
+        "maxZoom": 17
+      },
+      "D_BUILDING": {
+        "minZoom": 15,
+        "defaultZoom": 16,
+        "maxZoom": 19
+      }
+    },
+    "test": {
+      "BASE_ORGQX": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 10,
+        "maxZoom": 17
+      },
+      "BASE_ORGJD": {
+        "auto": false,
+        "minZoom": 10,
+        "defaultZoom": 12,
+        "maxZoom": 17
+      },
+      "BASE_ORGSQ": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "BASE_ORGWG": {
+        "auto": false,
+        "minZoom": 12,
+        "defaultZoom": 15,
+        "maxZoom": 17
+      },
+      "D_BUILDING": {
+        "minZoom": 15,
+        "defaultZoom": 16,
+        "maxZoom": 19
+      }
+    },
+    "guiyang": {
+      "BASE_ORGQX": {
+        "minZoom": 14,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "BASE_ORGJD": {
+        "minZoom": 14,
+        "defaultZoom": 15,
+        "maxZoom": 18
+      },
+      "BASE_ORGSQ": {
+        "minZoom": 14,
+        "defaultZoom": 16,
+        "maxZoom": 18
+      },
+      "BASE_ORGWG": {
+        "minZoom": 14,
+        "defaultZoom": 17,
+        "maxZoom": 19
+      },
+      "D_BUILDING": {
+        "minZoom": 17,
+        "defaultZoom": 18,
+        "maxZoom": 20
+      }
+    },
+    "suifenhe": {
+      "BASE_ORGQX": {
+        "minZoom": 11,
+        "defaultZoom": 11,
+        "maxZoom": 16
+      },
+      "BASE_ORGJD": {
+        "minZoom": 12,
+        "defaultZoom": 12,
+        "maxZoom": 16
+      },
+      "BASE_ORGSQ": {
+        "minZoom": 12,
+        "defaultZoom": 13,
+        "maxZoom": 17
+      },
+      "BASE_ORGWG": {
+        "minZoom": 11,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "D_BUILDING": {
+        "minZoom": 15,
+        "defaultZoom": 15,
+        "maxZoom": 18
+      }
+    },
+    "lanzhou": {
+      "BASE_ORGQX": {
+        "minZoom": 8,
+        "defaultZoom": 9,
+        "maxZoom": 19
+      },
+      "BASE_ORGJD": {
+        "minZoom": 8,
+        "defaultZoom": 12,
+        "maxZoom": 19
+      },
+      "BASE_ORGSQ": {
+        "minZoom": 8,
+        "defaultZoom": 14,
+        "maxZoom": 19
+      },
+      "BASE_ORGWG": {
+        "minZoom": 10,
+        "defaultZoom": 16,
+        "maxZoom": 18
+      },
+      "D_BUILDING": {
+        "minZoom": 17,
+        "defaultZoom": 18,
+        "maxZoom": 20
+      }
+    },
+    "GX": {
+      "BASE_ORGQX": {
+        "minZoom": 10,
+        "defaultZoom": 10,
+        "maxZoom": 17
+      },
+      "BASE_ORGJD": {
+        "minZoom": 10,
+        "defaultZoom": 12,
+        "maxZoom": 17
+      },
+      "BASE_ORGSQ": {
+        "minZoom": 12,
+        "defaultZoom": 14,
+        "maxZoom": 17
+      },
+      "BASE_ORGWG": {
+        "minZoom": 12,
+        "defaultZoom": 15,
+        "maxZoom": 17
+      },
+      "D_BUILDING": {
+        "minZoom": 15,
+        "defaultZoom": 16,
+        "maxZoom": 19
+      }
+    }
+  }
+}

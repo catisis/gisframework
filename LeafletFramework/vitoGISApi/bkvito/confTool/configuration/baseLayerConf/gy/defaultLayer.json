@@ -1,0 +1,22 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://192.168.0.80:8060/geowebcache/service/wmts?service=WMTS&request=GetTile&version=1.0.0&layer=GY_25D&format=image%2Fpng&height=256&width=256&TILEMATRIXSET=EPSG:3857_GY_25D&tilematrix=EPSG:3857_GY_25D:{z}&tilerow={y}&tilecol={x}",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 19,
+    "minZoom": 14,
+    "crs": "EPSG3857",
+    "visible": true,
+    "center": [
+      26.682087428501248,106.61929160356523
+    ],
+    "initLevel": 18
+  }
+}

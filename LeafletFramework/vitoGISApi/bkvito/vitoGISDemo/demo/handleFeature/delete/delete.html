@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>删除要素示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<button id="delete">删除要素</button>
+<div>
+    <div>点击删除按钮将最后被点击的要素删除</div>
+</div>
+<script>
+    function init() {
+        VitoGIS.init("conf_delete.json",function(e){
+            window.gis = e;
+        });
+    }
+    //删除要素
+    var btnDelete = document.getElementById("delete");
+    btnDelete.addEventListener("click", function (e) {
+        gis.draw.doDelete(function (e) {
+            console.log(e);
+        });
+    });
+</script>
+</body>
+</html>

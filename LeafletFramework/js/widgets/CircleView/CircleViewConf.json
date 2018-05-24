@@ -1,0 +1,22 @@
+{
+  "level1": {
+    "radius": 500,
+    "maxValue": 100,
+    "minValue": 0
+  },
+  "level2": {
+    "radius": 600,
+    "maxValue": 200,
+    "minValue": 100
+  },
+  "level3": {
+    "radius": 700,
+    "maxValue": 300,
+    "minValue": 200
+  },
+  "level4": {
+    "radius": 800,
+    "maxValue": 10000,
+    "minValue": 300
+  }
+}

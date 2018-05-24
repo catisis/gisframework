@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>街景示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <button id="jiejing">街景</button>
+    <div>
+        <strong>街景插件使用注意三点：</strong>
+        <p>1.调用的是qq的api，所以网络不能断</p>
+        <p>2.依赖坐标转换插件，转换坐标的参数要正确</p>
+        <p>3.有jiejingConf.json中的panelUrl对应的页面</p>
+    </div>
+</div>
+<script>
+    __ctx = "";
+    var doubleClick = false;
+    var btnJiejing = document.getElementById("jiejing");
+    function init() {
+        VitoGIS.init("conf_jiejing.json",function(e){
+            window.gis = e;
+            gis.Events.on("JIEJING", function (e) {
+                gis.JiejingConf.panelUrl = 'pano.html';
+            });
+        });
+    }
+
+    btnJiejing.addEventListener("click", function (e) {
+        gis.jiejing.get();
+    });
+</script>
+</body>
+</html>

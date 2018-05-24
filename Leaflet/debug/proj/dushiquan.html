@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>坐标系测试地图</title>
+    <link rel="stylesheet" href="../../dist/leaflet.css" />
+
+    <link rel="stylesheet" href="../css/screen.css" />
+
+    <script type="text/javascript" src="../../build/deps.js"></script>
+    <script src="../leaflet-include.js"></script>
+</head>
+<body>
+<div id="map"></div>
+</body>
+<script>
+    var map = new L.Map('map', {
+    });
+    var my = L.tileLayer("http://d{s}.map.baidu.com/resource/mappic/bj/2/3/lv{z}/{x},{y}.jpg?v=001", {
+        maxZoom: 12,
+        minZoom: 6,
+        zoomReverse: true,
+        zoomOffset:1,
+        subdomains:[0,1,2,3]
+    }).addTo(map);
+
+    var cen =  L.marker([-33.8983154296875,35.31005859375]).addTo(map)
+    cen.bindPopup('我是中心点').addTo(map);
+    map.setView([-33.8983154296875,35.31005859375], 7);
+</script>
+</html>

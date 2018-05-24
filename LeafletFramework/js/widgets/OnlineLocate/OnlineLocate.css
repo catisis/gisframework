@@ -1,0 +1,70 @@
+.route-body:after {
+    bottom: -115px;
+    right: -47px;
+    position: absolute;
+    padding-bottom: 3px;
+    content: '\20';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 18px solid #ffffff;
+    font-size: 0;
+    line-height: 0;
+}
+
+.my-div-icon {
+    transition: all 1s linear;
+    -moz-transition: all 1s linear; /* Firefox 4 */
+    -webkit-transition: all 1s linear; /* Safari and Chrome */
+    -o-transition: all 1s linear; /* Opera */
+}
+
+.route-body {
+    border-radius: 15px;
+    background-color: #ffffff;
+    width: 100px;
+    height: 110px;
+
+}
+
+.route-line {
+    margin-bottom: 1px;
+    margin-top: -4%;
+    float: left;
+    width: 100%;
+    height: 2px;
+    border: none;
+    border-top: 4px solid #c4e3f3;
+}
+
+.route-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.route-center {
+    border-bottom: 4px solid #F0F0F0;
+    padding: 9px 22px 5px;
+}
+
+.route-btnbox {
+    margin-top: 6px;
+    text-align: center;
+}
+
+.route-button {
+    padding: 0px 5px;
+    color: #d0d0d0;
+}
+
+.route-button:hover {
+    color: #000000;
+}
+
+.route-close {
+    position: absolute;
+    top: 5px;
+    left: 75px;
+}

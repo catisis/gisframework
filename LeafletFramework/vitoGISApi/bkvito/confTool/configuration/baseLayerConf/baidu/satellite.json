@@ -1,0 +1,22 @@
+{
+  "satellite": {
+    "id": "satellite",
+    "title": "卫星地图",
+    "mapUrl": "http://shangetu{s}.map.bdimg.com/it/u=x={x};y={y};z={z};v=009;type=sate&fm=46&udt=20141015",
+    "labelUrl": "",
+    "subdomains": [
+      "0",
+      "1",
+      "2"
+    ],
+    "maxZoom": 18,
+    "minZoom": 5,
+    "crs": "BAIDU",
+    "tms":true,
+    "visible": true,
+    "center": [
+      39.91349,116.407945
+    ],
+    "initLevel": 15
+  }
+}

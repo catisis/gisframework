@@ -1,0 +1,23 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://192.168.0.80:8060/geowebcache/service/wmts?service=WMTS&request=GetTile&version=1.0.0&layer=SFH_25D&format=image%2Fpng&height=256&width=256&TILEMATRIXSET=EPSG:3857_SFH_25D&tilematrix=EPSG:3857_SFH_25D:{z}&tilerow={y}&tilecol={x}",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": "17",
+    "minZoom": "11",
+    "crs":"EPSG3395",
+    "visible": true,
+    "center": [
+      0.6713199776646817,
+      0.7171031665896153
+    ],
+    "initLevel": "16"
+  }
+}

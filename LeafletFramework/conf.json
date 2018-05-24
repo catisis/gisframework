@@ -1,0 +1,121 @@
+{
+  "baseLayerConf": {
+    "defaultLayer": {
+      "id": "defaultLayer",
+      "title": "默认地图",
+      "mapUrl": "http://192.168.0.191:8091/iserver/services/map-instance2/rest/maps/correct/tileImage.png?transparent=true&cacheEnabled=false&width=256&height=256&x={x}&y={y}&scale={sm}&redirect=false",
+      "labelUrl": "",
+      "subdomains": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "maxZoom": 18,
+      "minZoom": 11,
+      "crs": "UNKNOWN",
+      "visible": false,
+      "center": [
+        0.4299787022625365,
+        1.029235094459695
+      ],
+      "initLevel": 15
+    },
+    "amap": {
+      "id": "amap",
+      "title": "高德地图",
+      "mapUrl": "http://webrd{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}",
+      "labelUrl": "",
+      "subdomains": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "maxZoom": 18,
+      "minZoom": 4,
+      "crs": "EPSG900913",
+      "visible": true,
+      "center": [
+        37.444792429825284,
+        118.68050623260491
+      ],
+      "initLevel": 15
+    }
+  },
+  "featureLayersConf": {
+    "D_Building": {
+      "url": "http://192.168.0.172:6080/arcgis/rest/services/ddd/FeatureServer/0",
+      "tableName": "D_Building",
+      "visible": true,
+      "title": "楼宇",
+      "info": "View",
+      "geoType": "polygon",
+      "serverType": "Arcgis",
+      "crs": "UNKNOWN",
+      "maxZoom": 18,
+      "minZoom": 15,
+      "defaultStyle": {
+        "fillOpacity": 0,
+        "opacity": 0.1,
+        "fillColor": "#CD4F39"
+      },
+      "passStyle": {
+        "fillOpacity": 0,
+        "opacity": 0.1,
+        "fillColor": "#000000"
+      },
+      "filter": "",
+      "auto": false
+    },
+    "Testline": {
+      "url": "http://192.168.0.191/ArcGIS/rest/services/test/FeatureServer/0",
+      "tableName": "Testline",
+      "visible": false,
+      "title": "测试线",
+      "info": "View",
+      "geoType": "polyline",
+      "serverType": "Arcgis",
+      "crs": "UNKNOWN",
+      "maxZoom": 18,
+      "minZoom": 15,
+      "defaultStyle": {
+        "fillOpacity": 0,
+        "opacity": 0.1
+      },
+      "passStyle": {
+        "fillOpacity": 0,
+        "opacity": 0.1
+      },
+      "filter": "",
+      "auto": false
+    }
+  },
+  "widgetsConfig": {
+    "Tools": {
+      "widgetUrl": "/widgets/Tools/Tools.js",
+      "widgetConf": "/widgets/Tools/ToolsConf.js",
+      "isUse": true
+    }
+  },
+  "divConfig": {
+    "View": {
+      "title": "人员管理",
+      "passPage": {
+        "url": "panel/partymemberPanel.html",
+        "width": 450,
+        "height": 400
+      },
+      "defaultPage": {
+        "url": "../map/theme/template/template.html",
+        "width": 450,
+        "height": 400
+      },
+      "editPage": {
+        "url": "../map/theme/template/template.html",
+        "width": 450,
+        "height": 400
+      }
+    }
+  }
+}

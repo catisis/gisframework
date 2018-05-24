@@ -1,0 +1,205 @@
+
+.body-container {
+    max-width: 1000px;
+    /*min-width: 850px;*/
+    margin: 0 auto;
+    width: 98%;
+}
+*,:after,:before{
+    -webkit-box-sizing:border-box;box-sizing:border-box
+}
+body,html{
+    min-height:100%;
+    margin:0;
+    font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1rem;
+    -ms-text-size-adjust:100%;-webkit-text-size-adjust:100%
+}
+ul {
+    padding-left: 0;
+}
+a {
+    border-radius: 10px;
+    display: block;
+}
+#t li>a:hover {
+
+    display: block;
+    cursor: pointer;
+    color: black;
+    background-color: #e9e9e9;
+    border-radius: 10px;
+}
+#t li>a {
+    padding: 0 0.7em;
+    color:#646464;
+}
+.normal {
+    color: #646464;
+}
+ul h5 {
+    padding: 10px;
+    margin: 0 0 -5px 0;
+    color:#414141;
+}
+h1 h3 {
+    background-color: #ebebeb;
+}
+.submenu>li {
+    text-align: center;
+}
+.submenu {
+    display: none;
+    position: absolute;
+    top:887px;
+    left:35px;
+    width: 81%;
+}
+li{
+    list-style: none;
+    line-height: 1.6rem;
+    font-size: 0.8rem;
+}
+ul>h4 {
+    margin: 10px 0 0 0;
+}
+pre {
+    box-shadow:inset 0 0 6px #ddd;
+    background-color: #e9e9e9;
+    display: block;
+    border: 1px solid #ddd;
+}
+table {
+    margin: 10px 0 15px 0;
+    border-collapse: collapse;
+}
+td,th {
+    border: 1px solid #ddd;
+    padding: 3px 10px;
+}
+.tabBodyCurrent{
+    display: block;
+}
+.first-list {
+    margin-top: 35px;
+}
+.clickState {
+    color: black;
+    background-color: #e9e9e9;
+}
+img {
+    margin:0 auto;
+}
+#companyname {
+    margin-top: 0;
+}
+.ds-thread {
+    margin-top: 20%;
+}
+
+/**设置滚动条的样式**/
+#t::-webkit-scrollbar {
+    width: 17px;
+}
+/**滚动槽**/
+#t::-webkit-scrollbar-track {
+    /*box-shadow: inset 0 0 6px #d1cfcf;*/
+    border-radius: 10px;
+}
+/**滚动条滑块**/
+#t::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: #dddbd4;
+    -webkit-box-shadow: inset 0 0 6px #e9e9e9;
+}
+#t::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(245,245,245,0.4);
+}
+#nav-box {
+
+    height: 100%;
+    margin: 0px;
+    width: 22%;
+    /*width: 190.88px;*/
+    border-right:1px solid #b9b9b9;
+    position: relative;
+    float: left
+}
+.nav {
+    margin-bottom:40px;
+}
+#t {
+    overflow-y: scroll;
+    max-width: 220px;
+    height: 100%;
+    margin: 0;
+    width: 22%;
+    border-right:1px solid #b9b9b9;
+    position: static;
+    float: left
+}
+#t:first-child h3{
+    margin-top: 19px;
+    text-align: left;
+}
+.left-tab {
+    position: relative;	
+}
+#overiframe {
+    border: none;
+    min-height:800px;
+    overflow: auto;
+    width: 70%;
+    /*position: relative;*/
+    float: right;
+
+}
+#overiframe h5{
+    line-height: 5.5em;
+    margin: 3px 0;
+}
+.body-container h3,h4 {
+    color: #2f2f2f;
+}
+.default-header {
+    color: #0075c7;
+}
+.current-header {
+    color: #b1b1b1;
+}
+pre {
+    box-shadow: inset 0 0 6px #ddd;
+    background-color: #F5F4F4;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 0;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.2rem;
+}
+#overiframe pre code {
+    display: block;
+    overflow: auto;
+    padding: 1.75em 1em;
+}
+@media (min-width:800px){ /*--如果浏览器小于800px*/
+    .body-container{width: 98%}
+    #overiframe{width: 70%;}
+    #t{width: 22%}
+}
+@media (max-width:800px){ /*--如果浏览器小于800px*/
+    #overiframe{width: 100%;}
+    #t{display: none}
+}
+@media (max-width:400px) /*--如果浏览器宽度小于400px*/
+{
+    #overiframe{width: 100%;}
+    #t{display: none}
+}
+
+td {
+    word-wrap: break-word;
+}

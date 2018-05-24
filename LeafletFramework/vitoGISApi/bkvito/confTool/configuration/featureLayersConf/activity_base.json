@@ -1,0 +1,52 @@
+{
+  "Activity_Base": {
+    "isShow": false,
+    "geom_field": "GEOM",
+    "crs": "EPSG3395",
+    "netSP": "https://www.baidu.com",
+    "nameSpace": "dy",
+    "defaultStyle": {
+      "iconUrl": "image/poi/zhzl_keyareas_def.png",
+      "popupAnchor": [
+        0,
+        -30
+      ],
+      "iconAnchor": [
+        22,
+        32
+      ],
+      "iconSize": [
+        44,
+        33
+      ]
+    },
+    "serverType": "OGC",
+    "labelField": "NAME",
+    "info": "",
+    "visible": false,
+    "filter": "",
+    "tableName": "activity_base",
+    "resource": "djxt_dzzgl1",
+    "auto": false,
+    "title": "活动",
+    "minZoom": 14,
+    "url": "gis/proxy.jsp?http://192.168.0.222:8090/geoserver/dy/ows",
+    "passStyle": {
+      "iconUrl": "image/poi/zhzl_keyareas_pass.png",
+      "popupAnchor": [
+        0,
+        -30
+      ],
+      "iconAnchor": [
+        22,
+        32
+      ],
+      "iconSize": [
+        44,
+        33
+      ]
+    },
+    "geoType": "point",
+    "maxZoom": 17
+  }
+}

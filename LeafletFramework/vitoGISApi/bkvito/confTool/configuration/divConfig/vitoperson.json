@@ -1,0 +1,24 @@
+{
+  "vitoperson": {
+    "title": "DISPUTE_TRACE",
+    "passPage": {
+      "url": "../../common/mapPanel/dispute_griderPanel.html",
+      "width": 650,
+      "height": 380,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "defaultPage": {
+      "title": "网格员信息",
+      "url": "../../common/mapPanel/dispute_griderPanel.html",
+      "width": 650,
+      "height": 380,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "editPage": {
+      "url": "../../common/mapPanel/dispute_griderPanel.html",
+      "width": 650,
+      "height": 380,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

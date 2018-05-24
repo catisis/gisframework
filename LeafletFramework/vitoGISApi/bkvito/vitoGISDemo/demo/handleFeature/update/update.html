@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>点绘制和更新的示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <p>点击要素，更改要素isbusine的值</p>
+</div>
+<div>
+    <p></p>
+</div>
+<script>
+    function init() {
+        //修改json文件中的图标地址可以修改点覆盖物的图标
+        VitoGIS.init("conf_update.json",function(e){
+            window.gis = e;
+
+            //监听要素的click事件，将元素更改
+            gis.Events.on("FEATURECLICK", function (e) {
+                var feature;
+                var property = e.properties;
+                //给property对象的属性赋值来完成更改被点击的元素
+                if(property.ISBUSINE == "1"){
+                    property.ISBUSINE = null;
+                } else {
+                    property.ISBUSINE = "1";
+                }
+                //将property的属性都赋值成null效果等同于删除
+//                property.geom = null;
+//                property.islocate = null;
+//                property.mapsamlltypeId = null;
+//                property.mapsamlltypename = null;
+//                property.mapbigtypeid = null;
+//                property.mapbigtypename = null;
+                gis.draw.doUpdate(property, function (e) {
+                    if(gis.layerManager.getCurrentInfo()){
+                        gis.layerManager.getCurrentInfo().remove();
+                    }
+                    var layer = gis.layerManager.configManager.getFeatureLayersConf();
+                    gis.layerManager.loadLayers(layer);
+                },"DJ_PARTY", "ID = ("+e.properties.ID+")",feature);
+            });
+        });
+    }
+</script>
+</body>
+</html>

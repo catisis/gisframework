@@ -1,0 +1,9 @@
+{
+  "LocatingPoint": {
+    "id": "LocatingPoint",
+    "widgetUrl": "../../gis/widgets/LocatingPoint/LocatingPoint.js",
+    "widgetConf": "../../gis/widgets/LocatingPoint/LocatingPoint.json",
+    "isUse": true,
+    "title": "¶¨Î»"
+  }
+}

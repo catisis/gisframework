@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>街景展示</title>
+
+</head>
+<body onLoad="init()">
+<style type="text/css">
+    html,body{
+        width:100%;
+        height:100%
+    }
+    *{
+        margin:0px;
+        padding:0px;
+    }
+    body, button, input, select, textarea {
+        font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+    }
+    p{
+        width:603px;
+        padding-top:3px;
+        overflow:hidden;
+    }
+</style>
+<script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return r[2]; return null;
+    }
+    var init = function() {
+//            var map = new qq.maps.Map(document.getElementById("container"),{
+//                center: new qq.maps.LatLng(39.916527,116.397128),
+//                zoomLevel: 13
+//            })
+        //设置路网图层
+//            var pano_layer = new qq.maps.PanoramaLayer();
+//            pano_layer.setMap(map);
+        // 创建街景
+        var pano = new qq.maps.Panorama(document.getElementById('pano_holder'), {
+            //   pano: '10051001111220105028000',
+            disableMove: false,
+            pov:{
+                heading:20,
+                pitch:15
+            },
+            zoom:1
+        });
+
+        pano_service = new qq.maps.PanoramaService();
+        //-0.03715196164077
+        //+0.1635516097797
+        var lat = Number(getQueryString("lat"));
+        var lng = Number(getQueryString("lng"));
+        var point = new qq.maps.LatLng(lat,lng);
+        var radius;
+        debugger;
+        pano_service.getPano(point, radius, function (result){
+        	debugger;
+            pano.setPano(result.svid);
+        });
+
+    }
+</script>
+<div style="width:100%;height:100%" id="pano_holder"></div>
+<script src="http://map.qq.com/api/js?v=2.exp&key=d84d6d83e0e51e481e50454ccbe8986b"></script>
+</body>
+</html>

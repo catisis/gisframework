@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>要素查询示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <button id="query">查询要素</button>
+</div>
+<div>
+    <p>如果不需要给要素绑定窗口，可以设置info的值为""或设置isListen(默认情况下为true)的值为false</p>
+    <p>auto属性值为true时，只在minZoom和maxZoom之间查询可视范围内的要素</p>
+    <p>auto属性值为false时会将地图上的所有要素查出来，会导致要素加载慢</p>
+</div>
+<script>
+    function init() {
+        VitoGIS.init("conf_query.json",function(e){
+            window.gis = e;
+            gis.Events.on("FEATURECLICK", function (e) {
+               alert("要素查询成功")
+            });
+        });
+    }
+
+    var btnQuery = document.getElementById("query");
+    btnQuery.addEventListener("click", function (e) {
+        //要查询的图层的配置
+        var currentConf = {
+            "isShow": true,
+            "geom_field": "GEOM",
+            "crs": "EPSG3395",
+            "netSP": "http://www.bkvito.com/portalnet",
+            "nameSpace": "portalnet",
+            "defaultStyle": {
+                "fillColor": "#CD4F39",
+                "opacity": 0.1,
+                "fillOpacity": 0
+            },
+            "serverType": "OGC",
+            "labelField": "NAME",
+            "info": "View",
+            "visible": true,
+            "filter": "",
+            "tableName": "POLYGON",
+            "auto": true,
+            "title": "面",
+            "minZoom": 8,
+            "defaultZoom": 16,
+            "url": "/proxy",
+            "passStyle": {
+                "fillColor": "#000000",
+                "opacity": 0.1,
+                "fillOpacity": 0
+            },
+            "geoType": "polygon",
+            "maxZoom": 17
+        };
+
+        var continer;
+        var featureLayer = new L.FeatureGroup();
+        featureLayer.id = currentConf.id;
+        featureLayer.addTo(continer || gis.layerManager.map, currentConf.id);
+        var params ={where: currentConf.filter};
+        if(currentConf.auto) {
+            if (gis.layerManager.map.getZoom() >= currentConf.minZoom && gis.layerManager.map.getZoom() < currentConf.maxZoom){
+                params.bounds = gis.layerManager.map.getBounds();
+                gis.layerManager.doQuery(currentConf,params,featureLayer);
+            }
+        } else{
+            params.tableName = currentConf.tableName;
+            gis.layerManager.doQuery(currentConf,params,featureLayer);
+        }
+    });
+
+</script>
+</body>
+</html>

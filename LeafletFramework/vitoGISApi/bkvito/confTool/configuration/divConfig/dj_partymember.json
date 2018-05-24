@@ -1,0 +1,18 @@
+{
+  "dj_partymember": {
+    "title": "党员信息",
+    "passPage": {
+      "title": "{title}",
+      "url": "../../common/mapPanel/commie.html",
+      "width": 494,
+      "height": 434,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "defaultPage": {
+      "url": "../../common/mapPanel/commie.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

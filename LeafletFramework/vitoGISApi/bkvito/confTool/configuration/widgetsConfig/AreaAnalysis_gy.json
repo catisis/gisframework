@@ -1,0 +1,9 @@
+{
+  "AreaAnalysis_gy": {
+    "id": "AreaAnalysis",
+    "widgetUrl": "widgets/AreaAnalysis_gy/AreaAnalysis.js",
+    "widgetConf": "widgets/AreaAnalysis_gy/AreaAnalysis.json",
+    "isUse": true,
+    "title": "区域分析插件(贵阳)"
+  }
+}

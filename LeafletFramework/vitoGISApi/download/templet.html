@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>地图展示</title>
+    <script src="http://192.168.0.80:8020/core/js/api.js"></script>
+</head>
+
+<body onload="init()">
+<div id="map"></div>
+
+<script>
+    var flag = window.location.host;
+    if(!flag) {
+        alert("请在服务器环境下打开！例如：Apache，Tomcat，IIS，Nginx等。或者是用http协议的IDE运行。")
+    }
+
+    var layersConf = "";
+    var confStr = '#confStr#';
+    function init() {
+        VitoGIS.init(confStr,function(e) {
+            window.gis = e;
+        });
+    }
+</script>
+
+</body>
+</html>

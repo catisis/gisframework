@@ -1,0 +1,23 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://192.168.0.188:6080/arcgis/rest/services/LZMAP20160615/MapServer/tile/{z}/{y}/{x}",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": "19",
+    "minZoom": "08",
+    "crs":"EPSG3857",
+    "visible": true,
+    "center": [
+      36.0763384799899,
+      103.74783230059
+    ],
+    "initLevel": 18
+  }
+}

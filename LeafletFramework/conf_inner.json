@@ -1,0 +1,101 @@
+{
+  "baseLayerConf": {
+    "amap": {
+      "id": "amap",
+      "title": "高德地图",
+      "mapUrl": "http://wprd{s}.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}",
+      "labelUrl": "",
+      "detectRetina":true,
+      "subdomains": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "maxZoom": 18,
+      "minZoom": 4,
+      "crs": "EPSG900913",
+      "visible": true,
+      "center": [
+        39.915168,
+        116.403875
+      ],
+      "initLevel": 15
+    }
+  },
+  "featureLayersConf": {
+    "D_BUILDING": {
+      "fields":["ID","GEOM","ISBUSINE","ORGPATH"],
+      "isShow": true,
+      "geom_field": "GEOM",
+      "crs": "EPSG3395",
+      "netSP": "https://www.baidu.com",
+      "nameSpace": "dy",
+      "defaultStyle": {
+        "fillColor": "#CD4F39",
+        "opacity": 0.1,
+        "fillOpacity": 0
+      },
+      "serverType": "OGC",
+      "labelField": "NAME",
+      "info": "View",
+      "visible": true,
+      "filter": "",
+      "tableName": "D_BUILDING",
+      "resource": "djxt_dzzgl1",
+      "auto": true,
+      "title": "楼宇",
+      "minZoom": 15,
+      "defaultZoom": 16,
+      "url": "http://192.168.0.222:8090/geoserver/dy/ows",
+      "passStyle": {
+        "fillColor": "#000000",
+        "opacity": 0.1,
+        "fillOpacity": 0
+      },
+      "geoType": "polygon",
+      "maxZoom": 17
+    }
+  },
+  "widgetsConfig": {
+    "RoutePlayer": {
+      "id":"RoutePlayer",
+      "widgetUrl": "/../js/widgets/RoutePlayer/RoutePlayer.js",
+      "widgetConf": "/../js/widgets/RoutePlayer/RoutePlayerConf.json",
+      "widgetCSS": "/../js/widgets/RoutePlayer/RoutePlayer.css",
+      "isUse": true
+    },
+
+    "Overview": {
+      "id":"Overview",
+      "widgetUrl": "/../widgets/Overview/Overview.js",
+      "widgetConf": "/../widgets/Overview/OverviewConf.json",
+      "widgetCSS": "/../widgets/Overview/Overview.css",
+      "isUse": false
+    }
+  },
+  "divConfig": {
+    "View": {
+      "title": "D_Building",
+      "passPage": {
+        "title": "{NAME}",
+        "url": "../../common/mapPanel/newBuildingPanel.html",
+        "width": 450,
+        "height": 400,
+        "panelFrame": "test.html"
+      },
+      "defaultPage": {
+        "url": "../../common/mapPanel/addCoordinate.html",
+        "width": 400,
+        "height": 350,
+        "panelFrame": "test.html"
+      },
+      "editPage": {
+        "url": "../../common/mapPanel/addCoordinate.html",
+        "width": 400,
+        "height": 350,
+        "panelFrame": "test.html"
+      }
+    }
+  }
+}

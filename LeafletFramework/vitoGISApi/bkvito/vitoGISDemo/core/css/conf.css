@@ -1,0 +1,74 @@
+ul,li,div {
+    padding:0;
+    margin:0;
+}
+ul li {
+    float:left;
+    width:100px;
+    height:35px;
+    line-height:35px;
+    text-align:center;
+    background-color:#f1f1f1;
+    border-right:1px #bbb solid;
+    border-bottom:none;
+}
+ul li:hover {
+    cursor: pointer;
+}
+ul li.t1 {
+    background-color:#fff;
+    color:blue;
+}
+ul {
+    overflow:hidden;
+    list-style-type:none;
+}
+#tab_con {
+    width:100%;
+    height:95%;
+}
+
+
+/*code add*/
+.CodeMirror{
+    font-family:Consolas,monaco,'Courier New', Courier, monospace;
+    position: absolute;
+    bottom: 0;
+    top: 33px;
+    width:100%;
+    height: 95%;
+}
+.CodeMirror pre{
+    line-height:1.5em;
+}
+.CodeMirror-sizer{
+    padding-left:2px;
+}
+#drag{
+    width: 2px;
+    height: 100%;
+    background: #eee;
+    cursor: w-resize;
+    float:left;
+}
+.cm-s-eclipse span.cm-property {
+    color: #ff0404;
+}
+/**设置滚动条的样式**/
+::-webkit-scrollbar {
+    width: 10px;
+}
+/**滚动槽**/
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #d1cfcf;
+    border-radius: 10px;
+}
+/**滚动条滑块**/
+::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: #f7f7f7;
+    -webkit-box-shadow: inset 0 0 6px #d1cfcf;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(245,245,245,0.4);
+}

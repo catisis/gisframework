@@ -1,0 +1,26 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://116.213.144.136:8090/iserver/services/map-instance/rest/maps/DYyx1/tileImage.png?maxVisibleVertex=360000&transparent=true&cacheEnabled=true&width=256&height=256&x={x}&y={y}&scale={sm}&redirect=false&_token=",
+    "labelUrl": "",
+    "subdomains": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "maxZoom": 18,
+    "minZoom": 10,
+    "crs": [
+      -290875.5,
+      205381.0
+    ],
+    "visible": true,
+    "center": [
+      0.4299787022625365,
+      1.029235094459695
+    ],
+    "initLevel": 15
+  }
+}

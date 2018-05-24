@@ -1,0 +1,9 @@
+{
+  "CircleViewWidget": {
+    "id": "CircleViewWidget",
+    "widgetUrl": "widgets/CircleViewWidget/CircleVIewWidget.js",
+    "widgetConf": "widgets/CircleViewWidget/CircleViewConf.json",
+    "isUse": true,
+    "title": "圆形视图插件"
+  }
+}

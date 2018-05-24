@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>显示经纬度示例</title>
+    <script src="../../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div>
+    <div>
+        <p>在配置文件中加上显示坐标插件的配置</p>
+    </div>
+</div>
+<script>
+
+    function init() {
+        VitoGIS.init("conf_showCoordinatePoint.json",function(e){
+            window.gis = e;
+        });
+    }
+</script>
+</body>
+</html>

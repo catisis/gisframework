@@ -1,0 +1,72 @@
+{
+  "baseLayerConf": {
+    "defaultLayer": {
+      "id": "amap",
+      "title": "高德地图",
+      "mapUrl": "http://wprd{s}.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}",
+      "labelUrl": "",
+      "detectRetina":false,
+      "subdomains": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "maxZoom": 18,
+      "minZoom": 4,
+      "crs": "EPSG900913",
+      "visible": true,
+      "center": [39.904989,116.405285],
+      "initLevel": 10
+    }
+  },
+  "featureLayersConf": {
+    "POLYGON": {
+      "isShow": true,
+      "geom_field": "GEOM",
+      "crs": "EPSG3395",
+      "netSP": "http://www.bkvito.com/portalnet",
+      "nameSpace": "portalnet",
+      "defaultStyle": {
+        "fillColor": "#CD4F39",
+        "opacity": 0.1,
+        "fillOpacity": 0
+      },
+      "serverType": "OGC",
+      "labelField": "NAME",
+      "info": "View",
+      "visible": true,
+      "filter": "",
+      "tableName": "POLYGON",
+      "auto": true,
+      "title": "面",
+      "minZoom": 8,
+      "defaultZoom": 16,
+      "url": "/proxy",
+      "passStyle": {
+        "fillColor": "#000000",
+        "opacity": 0.1,
+        "fillOpacity": 0
+      },
+      "geoType": "polygon",
+      "maxZoom": 17
+    }
+  },
+  "widgetsConfig": {
+    "Tools": {
+      "id":"Tools",
+      "widgetUrl": "/../js/widgets/Tools/Tools.js",
+      "widgetConf": "/../js/widgets/Tools/ToolsConf.json",
+      "isUse": true
+    },
+    "Transform": {
+      "id":"Transform",
+      "widgetUrl": "/../js/widgets/transform/Transform.js",
+      "widgetConf": "/../js/widgets/transform/TransformConf.json",
+      "isUse": true
+    }
+  },
+  "divConfig": {
+
+  }
+}

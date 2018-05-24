@@ -1,0 +1,9 @@
+{
+  "HeatMap": {
+    "id": "HeatMap",
+    "widgetUrl": "widgets/HeatMap/HeatMap.js",
+    "widgetConf": "widgets/HeatMap/HeatMap.json",
+    "isUse": true,
+    "title": "热力图"
+  }
+}

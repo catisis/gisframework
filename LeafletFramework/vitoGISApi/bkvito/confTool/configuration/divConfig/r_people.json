@@ -1,0 +1,18 @@
+{
+  "r_people": {
+    "title": "人员面板",
+    "defaultPage": {
+      "title": "{title}",
+      "url": "../../common/mapPanel/peoplePanel.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "passPage": {
+      "url": "../../common/mapPanel/peoplePanel.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

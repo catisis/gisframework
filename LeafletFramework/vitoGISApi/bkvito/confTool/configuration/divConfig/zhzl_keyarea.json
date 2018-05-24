@@ -1,0 +1,24 @@
+{
+  "zhzl_keyarea": {
+    "title": "ZHZL_KEYAREA",
+    "passPage": {
+      "title": "{title}",
+      "url": "../../common/mapPanel/commonPanel.html",
+      "width": 450,
+      "height": 400,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "defaultPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    },
+    "editPage": {
+      "url": "../../common/mapPanel/addCoordinate.html",
+      "width": 400,
+      "height": 350,
+      "panelFrame": "../../common/mapPanel/panelFrame/frame_default.html"
+    }
+  }
+}

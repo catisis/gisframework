@@ -1,0 +1,61 @@
+<!DOCUMENT html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Fully customizable and responsive CSS grids.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>工具演示</title>
+    <script src="../../core/js/api.js"></script>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+</head>
+<body onload="init()" >
+<div id="map"></div>
+<div id ="measure">
+    <button id="distance">测距</button>
+    <button id="area">测面</button>
+    <button id="clear">清除</button>
+    <button id="center">中心点</button>
+</div>
+<div>
+    <p>需要在配置文件中配置工具插件和坐标转换插件</p>
+    <p>注意：坐标转换插件的六个参数是否正确</p>
+</div>
+<script>
+    //加上工具插件可以实现工具中的方法，另外工具插件依赖transform插件，所以也要引入transform插件
+    function init(){
+        VitoGIS.init("conf_tools.json",function(e){
+            window.gis=e;
+        });
+    }
+    var btnDistance=document.getElementById("distance");
+    var btnArea=document.getElementById("area");
+    btnDistance.addEventListener("click",function(e){
+        gis.tools.measureLength();
+    });
+    btnArea.addEventListener("click",function(e){
+        gis.tools.measureArea();
+    });
+    var btnClear=document.getElementById("clear");
+    var btnCenter=document.getElementById("center");
+    btnClear.addEventListener("click",function(e){
+        gis.layerManager.closeAll();gis.layerManager.openLayer('D_BUILDING');
+    });
+
+    btnCenter.addEventListener("click",function(e){
+        gis.setCenter();
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>

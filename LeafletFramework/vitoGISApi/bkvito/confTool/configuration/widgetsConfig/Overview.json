@@ -1,0 +1,10 @@
+{
+  "Overview": {
+    "id": "Overview",
+    "widgetUrl": "widgets/Overview/Overview.js",
+    "widgetConf": "widgets/Overview/OverviewConf.json",
+    "widgetCSS": "widgets/Overview/Overview.css",
+    "isUse": false,
+    "title": "鹰眼视图插件"
+  }
+}

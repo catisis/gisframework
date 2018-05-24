@@ -1,0 +1,9 @@
+{
+  "Tools_gy": {
+    "id": "Tools",
+    "widgetUrl": "widgets/Tools_gy/Tools.js",
+    "widgetConf": "widgets/Tools_gy/ToolsConf.json",
+    "isUse": true,
+    "title": "工具插件(贵阳)"
+  }
+}

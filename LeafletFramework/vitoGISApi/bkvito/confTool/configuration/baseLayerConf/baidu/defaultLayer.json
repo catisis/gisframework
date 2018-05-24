@@ -1,0 +1,22 @@
+{
+  "defaultLayer": {
+    "id": "defaultLayer",
+    "title": "默认地图",
+    "mapUrl": "http://api{s}.map.bdimg.com/customimage/tile?&x={x}&y={y}&z={z}&udt=20160928&scale=1&styles=t%3Abackground%7Ce%3Aall%7Cc%3A%23034dc1%7Ch%3A%23034dc1",
+    "labelUrl": "",
+    "subdomains": [
+      "0",
+      "1",
+      "2"
+    ],
+    "maxZoom": 18,
+    "minZoom": 5,
+    "crs": "BAIDU",
+    "tms":true,
+    "visible": true,
+    "center": [
+      39.91349,116.407945
+    ],
+    "initLevel": 15
+  }
+}

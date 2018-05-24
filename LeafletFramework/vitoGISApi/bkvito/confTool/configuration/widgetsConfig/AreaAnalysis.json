@@ -1,0 +1,9 @@
+{
+  "AreaAnalysis": {
+    "id": "AreaAnalysis",
+    "widgetUrl": "widgets/AreaAnalysis/AreaAnalysis.js",
+    "widgetConf": "widgets/AreaAnalysis/AreaAnalysis.json",
+    "isUse": true,
+    "title": "区域分析插件"
+  }
+}
