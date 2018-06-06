@@ -107,9 +107,9 @@ L.extend(L.GeoJSON, {
             case 'LineString':
             case 'MultiLineString':
                 latlngs = this.coordsToLatLngs(coords, geometry.type === 'LineString' ? 0 : 1, coordsToLatLng);
-                var returngeom = L.Polyline(latlngs, options);
+                var returngeom = new L.Polyline(latlngs, options);
                 returngeom.feature = {properties: geojson.properties}
-                return new returngeom;
+                return returngeom;
 
             case 'Polygon':
             case 'MultiPolygon':

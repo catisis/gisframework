@@ -1,5 +1,5 @@
 /*
- Leaflet 1.0.0-beta.2 (17648df), a JS library for interactive maps. http://leafletjs.com
+ Leaflet 1.0.0-beta.2 ("52bdbf7"), a JS library for interactive maps. http://leafletjs.com
  (c) 2010-2015 Vladimir Agafonkin, (c) 2010-2011 CloudMade
 */
 (function (window, document, undefined) {
@@ -7037,10 +7037,10 @@ L.extend(L.GeoJSON, {
 
             case 'LineString':
             case 'MultiLineString':
-				latlngs = this.coordsToLatLngs(coords, geometry.type === 'LineString' ? 0 : 1, coordsToLatLng);
-				var returngeom = new L.Polyline(latlngs, options);
-				returngeom.feature = {properties: geojson.properties}
-				return  returngeom;
+                latlngs = this.coordsToLatLngs(coords, geometry.type === 'LineString' ? 0 : 1, coordsToLatLng);
+                var returngeom = new L.Polyline(latlngs, options);
+                returngeom.feature = {properties: geojson.properties}
+                return returngeom;
 
             case 'Polygon':
             case 'MultiPolygon':
@@ -18271,4 +18271,4 @@ Wkt.Wkt.prototype.deconstruct = function (obj) {
 };
 
 }(window, document));
-//# sourceMappingURL=leaflet-custom-src.map
+//# sourceMappingURL=leaflet-src.map

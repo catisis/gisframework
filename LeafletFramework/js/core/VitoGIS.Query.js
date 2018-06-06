@@ -337,12 +337,12 @@ VitoGIS.Query.prototype.zoomToWKT = function (features, info, isZoom) {
             "isListen": true,
             "defaultStyle": {
                 "fillOpacity": 0.5,
-                "opacity": 0.5,
+                "opacity": 1,
                 "fillColor": "#CD4F39"
             },
             "passStyle": {
                 "fillOpacity": 0.5,
-                "opacity": 0.5,
+                "opacity": 1,
                 "fillColor": "#CD4F39"
             }
         }
