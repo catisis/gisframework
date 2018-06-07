@@ -1,5 +1,5 @@
 /*
- Leaflet 1.0.0-beta.2 ("52bdbf7"), a JS library for interactive maps. http://leafletjs.com
+ Leaflet 1.0.0-beta.2 ("c732ffd"), a JS library for interactive maps. http://leafletjs.com
  (c) 2010-2015 Vladimir Agafonkin, (c) 2010-2011 CloudMade
 */
 (function (window, document, undefined) {
@@ -14028,19 +14028,30 @@ L.SupermapQuery = L.Class.extend({
         return this;
     },
     //处理返回时的面对象
-    _fixPolygon: function (points, result, attrs) {
-
+    _fixPolygon: function (parts, points, result, attrs) {
         var innerPoints = [];
-        for (var index in points) {
-            if (this.options.isInnerTransform) {
-                var transPoint = L.Util.transform.point25To2(points[index].x, points[index].y)
-                innerPoints.push([transPoint.y, transPoint.x]);
+        var start = 0;
+        var end = parts[0];
+        for(var partIndex in parts){
+            var tempPoints = [];
+            var arrayPoints = [];
+            for(i = start; i < end; i++){
+                if (this.options.isInnerTransform) {
+                    var transPoint = L.Util.transform.point25To2(points[i].x, points[i].y)
+                    arrayPoints.push([transPoint.y, transPoint.x]);
+                }
+                else {
+                    arrayPoints.push(L.Projection.Mercator.unproject(new L.point(points[i].x, points[i].y)));
+                }
             }
-            else {
-                innerPoints.push(L.Projection.Mercator.unproject(new L.point(points[index].x, points[index].y)));
+            if(partIndex + 1 < points.length){
+                start = end;
+                end = end + parts[partIndex + 1];
             }
-
+            tempPoints.push(arrayPoints);
+            innerPoints.push(tempPoints);
         }
+
         var polygon = new L.Polygon(innerPoints, {
             attrs: attrs
         });
@@ -14230,9 +14241,10 @@ L.SupermapQuery = L.Class.extend({
                         fieldValues: b.recordsets[recordIndex].features[i].fieldValues
                     }
                     var points = b.recordsets[recordIndex].features[i].geometry.points;
+                    var parts = b.recordsets[0].features[i].geometry.parts;
                     switch (b.recordsets[recordIndex].features[i].geometry.type) {
                         case "REGION":
-                            this._fixPolygon(points, result, attrs);
+                            this._fixPolygon(parts, points, result, attrs);
                             break;
                         case "POINT":
                             this._fixPoint(points, result, attrs);
