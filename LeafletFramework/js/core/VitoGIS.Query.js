@@ -49,6 +49,8 @@ VitoGIS.Query.prototype.queryByBounds = function (options, params, featureLayer,
         spatialRealation: params.spatialRealation,
         params: queryParams,
         bounds: params.geom || null,
+        isSuperTransform: options.isTransform || false,
+        currentBaseLayerConf: options.currentBaseLayerConf,
         isInnerTransform: false
     });
     if (params.isZoom == true) {
@@ -422,6 +424,7 @@ VitoGIS.Query.prototype._layerRequestDispatcher = function (currentConf, contine
         this.doQuery(currentConf, params, featureLayer);
     }
 }
+
 /**
  * 对自动查询图层进行处理
  * @method _autoQueryHandler
@@ -432,7 +435,21 @@ VitoGIS.Query.prototype._autoQueryHandler = function (e) {
         e = {target: this.self.map};
     // this.featureLayer.clearLayers();
     if (e.target.getZoom() >= this.currentConf.minZoom && e.target.getZoom() < this.currentConf.maxZoom) {
-        var params = {where: this.currentConf.filter, bounds: e.target.getBounds()};
+        var bound = e.target.getBounds();
+        if(this.self._currentBaseLayerConf.id == "defaultLayer" && this.currentConf.isTransform){
+            var  query = new L.SupermapQuery();
+            bound._northEast = L.Projection.Mercator.project(bound._northEast);
+            bound._northEast = query._transform.point25To2(query._transform.param, bound._northEast.x, bound._northEast.y);
+            bound._northEast = L.Projection.Mercator.unproject(bound._northEast);
+            bound._southWest = L.Projection.Mercator.project(bound._southWest);
+            bound._southWest = query._transform.point25To2(query._transform.param, bound._southWest.x, bound._southWest.y);
+            bound._southWest = L.Projection.Mercator.unproject(bound._southWest);
+            var tem = bound._northEast.lng;
+            bound._northEast.lng = bound._southWest.lng;
+            bound._southWest.lng = tem;
+        }
+        this.currentConf.currentBaseLayerConf = this.self._currentBaseLayerConf.id;
+        var params = {where: this.currentConf.filter, bounds: bound};
         this.self.doQuery(this.currentConf, params, this.featureLayer);
     } else {
         this.featureLayer.clearLayers();

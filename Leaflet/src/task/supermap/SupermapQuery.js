@@ -71,6 +71,35 @@ L.SupermapQuery = L.Class.extend({
         L.setOptions(this, options);
         return this;
     },
+    //坐标转换
+    _transform: {
+        //西长安街定制需求，优化代码从配置中获取
+        param: {
+            "A" : 4.506454,
+            "B" : 4.45686,
+            "C" : 3607607,
+            "D" : 2.009036,
+            "E" : 2.060451,
+            "F" : 387757.6
+        },
+        //x 为lng ,y 为lat
+        point2To25: function (param, x, y) {
+            var p = {};
+            var xx = param.A * x + param.B * y - param.C;
+            var yy = param.E * y - param.D * x + param.F;
+            p.x = xx;
+            p.y = yy;
+            return p;
+        },
+        point25To2: function (param, x, y) {
+            var p = {};
+            var xx = (param.E * x - param.B * y + param.F * param.B + param.E * param.C) / (param.A * param.E + param.B * param.D);
+            var yy = (0 - param.D * x - param.A * y + param.A * param.F - param.C * param.D) / (0 - param.B * param.D - param.A * param.E);
+            p.x = xx;
+            p.y = yy;
+            return p;
+        }
+    },
     //处理返回时的面对象
     _fixPolygon: function (parts, points, result, attrs) {
         var innerPoints = [];
@@ -83,8 +112,11 @@ L.SupermapQuery = L.Class.extend({
                 if (this.options.isInnerTransform) {
                     var transPoint = L.Util.transform.point25To2(points[i].x, points[i].y)
                     arrayPoints.push([transPoint.y, transPoint.x]);
-                }
-                else {
+                }else if (this.options.isSuperTransform && this.options.currentBaseLayerConf == "defaultLayer"){
+                    var transPoint = this._transform.point2To25(this._transform.param, points[i].x, points[i].y);
+                    transPoint = L.Projection.Mercator.unproject(transPoint);
+                    arrayPoints.push([transPoint.lat, transPoint.lng]);
+                }else {
                     arrayPoints.push(L.Projection.Mercator.unproject(new L.point(points[i].x, points[i].y)));
                 }
             }
@@ -112,26 +144,31 @@ L.SupermapQuery = L.Class.extend({
     //处理返回时的点对象
     _fixPoint: function (points, result, attrs) {
         for (var index in points) {
+            var marker;
             if (this.options.isInnerTransform) {
                 var transPoint = L.Util.transform.point25To2(points[index].x, points[index].y)
-                L.marker([transPoint.y, transPoint.x], {
-                    attrs: attrs
-                }).addTo(result);
-            }
-            else {
-                var marker = L.marker(L.Projection.Mercator.unproject(new L.point(points[index].x, points[index].y)), {
+                marker = L.marker([transPoint.y, transPoint.x], {
                     attrs: attrs
                 })
-                var prooerties = {};
-                for (var i in attrs.fieldNames) {
-                    prooerties[attrs.fieldNames[i].toUpperCase()] = attrs.fieldValues[i];
-                }
-                marker.feature = marker.toGeoJSON();
-                marker.feature.properties = prooerties;
-                marker.feature.id = "smid"+prooerties.SMID
-                marker.addTo(result);
+            }else if (this.options.isSuperTransform && this.options.currentBaseLayerConf == "defaultLayer"){
+                var transPoint = this._transform.point2To25(this._transform.param, points[index].x, points[index].y);
+                transPoint = L.Projection.Mercator.unproject(transPoint);
+                marker = L.marker(transPoint, {
+                    attrs: attrs
+                })
+            }else {
+                marker = L.marker(L.Projection.Mercator.unproject(new L.point(points[index].x, points[index].y)), {
+                    attrs: attrs
+                })
             }
-
+            var prooerties = {};
+            for (var i in attrs.fieldNames) {
+                prooerties[attrs.fieldNames[i].toUpperCase()] = attrs.fieldValues[i];
+            }
+            marker.feature = marker.toGeoJSON();
+            marker.feature.properties = prooerties;
+            marker.feature.id = "smid"+prooerties.SMID
+            marker.addTo(result);
         }
     },
     _fixLine: function (points, result, attrs) {
