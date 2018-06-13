@@ -1,5 +1,5 @@
 /*
- Leaflet 1.0.0-beta.2 ("8b8d15d"), a JS library for interactive maps. http://leafletjs.com
+ Leaflet 1.0.0-beta.2 ("293a8b1"), a JS library for interactive maps. http://leafletjs.com
  (c) 2010-2015 Vladimir Agafonkin, (c) 2010-2011 CloudMade
 */
 (function (window, document, undefined) {
@@ -14836,26 +14836,43 @@ L.Where = L.Class.extend({
         this.crs = options.crs;
         this.geom_field = options.geom_field || null;
         this.filters = [];
+        this.geofilters = [];
+        var flag = false; //标识使用AND还是OR
         var innerRelation = L.XmlUtil.createElementNS("ogc:And");
-
+        var innerOrRelation = L.XmlUtil.createElementNS("ogc:Or");
 
         var part = this._differentiateAnd(this.whereStr);
+        if(part.length == 1){
+            part = this._differentiateOr(this.whereStr);
+            if(part.length > 1){
+                flag = true;
+            }
+        }
         for (var i in part) {
             this._setInFilters(this.filters, part[i]);
         }
 
         if (this.geometry) {
             var filter = new L.Filter.Spatial();
-            this.filters.push(filter.append(this.spatialRelation, this.geometry, this.crs, this.geom_field));
+            this.geofilters.push(filter.append(this.spatialRelation, this.geometry, this.crs, this.geom_field));
         }
 
         if (this.bounds) {
             var filter = new L.Filter.BBox();
-            this.filters.push(filter.append(this.bounds, this.crs, this.geom_field));
+            this.geofilters.push(filter.append(this.bounds, this.crs, this.geom_field));
         }
 
         for (var j in this.filters) {
-            innerRelation.appendChild(this.filters[j])
+            if(flag){
+                innerOrRelation.appendChild(this.filters[j]);
+                this.filter.appendChild(innerOrRelation);
+            }else{
+                innerRelation.appendChild(this.filters[j]);
+                this.filter.appendChild(innerRelation);
+            }
+        }
+        for(var k in this.geofilters) {
+            innerRelation.appendChild(this.geofilters[k]);
             this.filter.appendChild(innerRelation);
         }
     },
@@ -14894,6 +14911,17 @@ L.Where = L.Class.extend({
             }
             filters.push(filter.append(params));
         }
+        else if (str.indexOf(" is ") > 0) {
+            var colum, params = [], filter = new L.Filter.Property(),
+                keyWordIndex = str.indexOf(" is ");
+            colum = str.substring(0, keyWordIndex);
+            params.push({
+                relation: "PropertyIsNull",
+                propertyName: colum,
+                propertyValue: null
+            })
+            filters.push(filter.append(params));
+        }
     },
     _differentiateAnd: function (str, arr) {
         if (!arr)
@@ -14905,6 +14933,21 @@ L.Where = L.Class.extend({
             currentStr = str.substring(endIndex + 5);
             arr.push(str.substring(startIndex, endIndex));
             return this._differentiateAnd(currentStr, arr);
+        } else {
+            arr.push(str);
+            return arr;
+        }
+    },
+    _differentiateOr: function(str, arr) {
+        if(!arr)
+            arr = [];
+        var currentStr;
+        if (str.indexOf(" or ") > 0) {
+            var startIndex = 0,
+                endIndex = str.indexOf(" or ");
+            currentStr = str.substring(endIndex + 4);
+            arr.push(str.substring(startIndex, endIndex));
+            return this._differentiateOr(currentStr, arr);
         } else {
             arr.push(str);
             return arr;
