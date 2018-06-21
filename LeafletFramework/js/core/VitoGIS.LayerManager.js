@@ -136,6 +136,41 @@ VitoGIS.LayerManager.prototype.openLayer = function (name) {
 }
 
 /**
+* 处理图层与另一图层图形匹配
+* @method dealLayer
+* */
+VitoGIS.LayerManager.prototype.dealLayer = function (name, fn) {
+    var params = {};
+    params.where = "";
+    var featureLayerConf = this.configManager.getFeatureLayersConf();
+    var currentConf = featureLayerConf[name];
+    var matchConf = {};
+    if(currentConf.matchLayerName){
+        matchConf = featureLayerConf[currentConf.matchLayerName];
+    }
+    switch (currentConf.serverType) {
+        case "OGC":
+            if(this._currentBaseLayerConf.id != "defaultLayer"){
+                return [];
+            }
+            var callback = function (features) {
+                this.queryFeature(name, currentConf, matchConf, features, fn);
+            }
+            this.doQuery(currentConf, params, null, callback);
+            break;
+        case  "Supermap":
+            if(this._currentBaseLayerConf.id != "xcajLayer"){
+                return [];
+            }
+            var callback = function(a){
+                this.queryFeature(name, currentConf, matchConf, a._layers, fn);
+            }
+            this.doQuery(currentConf, params, null, callback);
+            break;
+    }
+}
+
+/**
  *  清除当前所有图层
  *  @method cleanAll
  * */

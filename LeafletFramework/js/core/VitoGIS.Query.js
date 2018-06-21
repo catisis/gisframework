@@ -354,6 +354,128 @@ VitoGIS.Query.prototype.zoomToWKT = function (features, info, isZoom) {
     return isLocate;
 
 }
+
+/*
+ * 查询并处理数据
+ * */
+VitoGIS.Query.prototype.queryFeature = function(layername, currentConf, matchConf, features, fn){
+    var center;
+    var query = new L.SupermapQuery();
+    var relationList = []
+    var objlength = Object.getOwnPropertyNames(features).length;
+    var num = 0;
+    switch (currentConf.serverType) {
+        case "OGC": // OGC查询,处理OGC格式的Feature,2.5维坐标转2维坐标
+            for(var index in features){
+                var triid = features[index].feature.properties.ID;
+                center = features[index].getBounds().getCenter();
+                center = L.Projection.Mercator.project(center);
+                center = query._transform.point25To2(query._transform.param, center.x, center.y);
+                center = L.Projection.Mercator.unproject(center);
+                var halfheight = 0.000035;
+                var halfwidth = 0.001;
+                var dh = 0.00035;
+                var dw = 0.001;
+                var bound = this.makeBound(center, halfheight, halfwidth);
+                var param = {bounds:bound};
+                var callback = function(a){
+                    if($.isEmptyObject(a._layers)){
+                        halfheight = halfheight + dh;
+                        halfwidth = halfwidth + dw;
+                        var newbound = this.makeBound(center, halfheight, halfwidth);
+                        if(newbound._southWest.lat > 0 && newbound._southWest.lng > 0){
+                            param = {bounds:newbound}
+                            this.doQuery(matchConf, param, null, callback);
+                        }
+                    }else{
+                        var mindistance = 10000000;
+                        var smid;
+                        var relationmap = {};
+                        relationmap.Layername = layername;
+                        relationmap.matchLayername = currentConf.matchLayerName;
+                        relationmap.TRIID = triid;
+                        for(var superfeature in a._layers){
+                            var supercenter = a._layers[superfeature].getBounds().getCenter();
+                            var distance = center.distanceTo(supercenter);
+                            if(distance < mindistance){
+                                mindistance = distance;
+                                smid = a._layers[superfeature].feature.properties.SMID;
+                            }
+                        }
+                        relationmap.SMID = smid;
+                        relationList.push(relationmap);
+                        num = num + 1;
+                        if(num == objlength){
+                            fn(relationList);
+                        }
+                    }
+                }
+                this.doQuery(matchConf, param, null, callback);
+            }
+            break;
+        case "Supermap": // SuperMap查询,处理SuperMap格式的Feature,2维转2.5维坐标
+            for(var index in features){
+                var smid = features[index].feature.properties.SMID;
+                center = features[index].getBounds().getCenter();
+                center = L.Projection.Mercator.project(center);
+                center = query._transform.point2To25(query._transform.param, center.x, center.y);
+                center = L.Projection.Mercator.unproject(center);
+                var halfheight = 0.0021;
+                var halfwidth = 0.004;
+                var dh = 0.0021;
+                var dw = 0.004;
+                var bound = this.makeBound(center, halfheight, halfwidth);
+                var param = {bounds:bound};
+                var callback = function(ogcfeatures){
+                    if($.isEmptyObject(ogcfeatures)){
+                        halfheight = halfheight + dh;
+                        halfwidth = halfwidth + dw;
+                        var newbound = this.makeBound(center, halfheight, halfwidth);
+                        param = {bounds:newbound}
+                        this.doQuery(matchConf, param, null, callback);
+                    }else{
+                        var mindistance = 10000000;
+                        var triid;
+                        var relationmap = {};
+                        relationmap.Layername = layername;
+                        relationmap.matchLayername = currentConf.matchLayerName;
+                        relationmap.SMID = smid;
+                        for(var ogcfeature in ogcfeatures){
+                            var ogccenter = ogcfeatures[ogcfeature].getBounds().getCenter();
+                            var distance = center.distanceTo(ogccenter);
+                            if(distance < mindistance){
+                                mindistance = distance;
+                                triid = ogcfeatures[ogcfeature].feature.properties.ID;
+                            }
+                        }
+                        relationmap.triid = triid;
+                        relationList.push(relationmap);
+                        num = num + 1;
+                        if(num == objlength){
+                            fn(relationList);
+                        }
+                    }
+                }
+                this.doQuery(matchConf, param, null, callback);
+            }
+            break;
+    }
+}
+
+/*
+* 构造查询用的圆
+* */
+VitoGIS.Query.prototype.makeBound = function(center, halfheight, halfwidth){
+    var bound = {};
+    var _southwest = center;
+    _southwest = L.latLng(_southwest.lat - halfheight ,_southwest.lng - halfwidth);
+    var _northeast = center;
+    _northeast = L.latLng(_northeast.lat + halfheight, _northeast.lng + halfwidth);
+    bound._southWest = _southwest;
+    bound._northEast = _northeast;
+    return bound;
+}
+
 /**
  * 初始化配置文件当中的图层
  * @method loadLayers
