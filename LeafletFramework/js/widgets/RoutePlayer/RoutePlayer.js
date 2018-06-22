@@ -7,6 +7,7 @@ VitoGIS.RoutePlayer = function (method) {
     this.handler = method;
     this._interval = 300;
     this._task = {};
+    this._count = 0;
 }
 VitoGIS.RoutePlayer.prototype = {
     // 这里写方法
@@ -22,11 +23,12 @@ VitoGIS.RoutePlayer.prototype = {
      */
     initRoute: function (features, isZoom) {
     	debugger
+        features = this._formatData(features);
         var myFeatures = [];
         var markerList = [];
         for (var i in features) {
 
-            var feature = new L.polyline(features[i].geom);
+            var feature = new L.polyline(features[i].geom,{color:'red'});
             feature.feature = {properties: features[i].attrs, id: (features[i].attrs.id + "-line"), currtimes: features[i].currtimes};
             myFeatures.push(feature);
             var picpath = features[i].attrs.picture;
@@ -60,6 +62,32 @@ VitoGIS.RoutePlayer.prototype = {
             if (isZoom)
                 gis.mapManager.map.fitBounds(gis.layerManager.resultLayer.getBounds());
         }
+    },
+    _formatData: function (features) { //去除前三个点数据，及过滤明显的脏数据
+        var v = 37; // S = 1100
+        for (var i in features) {
+            var times = features[i].currtimes.splice(0,2);
+            var points = features[i].geom.splice(0,2);
+            if(points.length > 1){
+                for(var j = 1; j < points.length; j++){
+                    var currentPoint = L.latLng(points[j]);
+                    var formerPoint = L.latLng(points[j-1]);
+                    var distance = currentPoint.distanceTo(formerPoint);
+                    var t = Math.abs(parseInt(new Date(times[j]) - new Date(times[j-1]))/1000);
+                    var s = v * t;
+                    if(distance > s){
+                        points.splice(j,1);
+                        times.splice(j,1);
+                        j = j - 1;
+                    }else{
+                        continue;
+                    }
+                }
+            }
+        }
+        features[i].geom = points;
+        features[i].currtimes = times;
+        return features;
     },
     _delegate: function (marker, point, processed, id, index) {
         var _this = this;
@@ -107,7 +135,7 @@ VitoGIS.RoutePlayer.prototype = {
                     _this.start(id)
                 };
                 this._task[id].state = "stop";
-                this._interval = 150;
+                this._interval = 300;
                 break;
             case "pause":
                 play.className = play.className.replace("fa-pause", "fa-play");
