@@ -66,8 +66,10 @@ VitoGIS.RoutePlayer.prototype = {
     _formatData: function (features) { //去除前三个点数据，及过滤明显的脏数据
         var v = 37; // S = 1100
         for (var i in features) {
-            var times = features[i].currtimes.splice(0,3);
-            var points = features[i].geom.splice(0,3);
+            var times = features[i].currtimes;
+            var points = features[i].geom;
+            times.splice(0,3);
+            points.splice(0,3);
             if(points.length > 1){
                 for(var j = 1; j < points.length; j++){
                     var currentPoint = L.latLng(points[j]);
