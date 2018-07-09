@@ -3,7 +3,6 @@
  * @module VitoGIS.LayerManager
  * */
 
-
 /**
  * 查询类
  * @class VitoGIS.Query
@@ -65,6 +64,13 @@ VitoGIS.Query.prototype.queryByBounds = function (options, params, featureLayer,
             this.addToMap(options, a._layers, featureLayer);
         }
     }
+    if(options.formerid){
+        this.formerid = options.formerid;
+        this.center = options.center;
+        this.halfheight = options.halfheight;
+        this.halfwidth = options.halfwidth;
+        this.random = options.random;
+    }
     query.get(options.url, callback, this);
 }
 /**
@@ -103,7 +109,14 @@ VitoGIS.Query.prototype.queryByWhere = function (options, params, featureLayer, 
             this.addToMap(options, features, featureLayer);
         }
     }
-    query.get(options.url, callback, this)
+    if(options.formerid){
+        this.formerid = options.formerid;
+        this.center = options.center;
+        this.halfheight = options.halfheight;
+        this.halfwidth = options.halfwidth;
+        this.random = options.random;
+    }
+    query.get(options.url, callback, this);
 }
 
 VitoGIS.Query.prototype.queryByEsriHandler = function (options, params, featureLayer, callback) {
@@ -359,107 +372,148 @@ VitoGIS.Query.prototype.zoomToWKT = function (features, info, isZoom) {
  * 查询并处理数据
  * */
 VitoGIS.Query.prototype.queryFeature = function(layername, currentConf, matchConf, features, fn){
-    var center;
-    var query = new L.SupermapQuery();
+    var featuresKeys = Object.keys(features);
     var relationList = []
-    var objlength = Object.getOwnPropertyNames(features).length;
-    var num = 0;
+    var OGC_i = 0;
+    currentConf.layername = layername;
     switch (currentConf.serverType) {
         case "OGC": // OGC查询,处理OGC格式的Feature,2.5维坐标转2维坐标
-            for(var index in features){
-                var triid = features[index].feature.properties.ID;
-                center = features[index].getBounds().getCenter();
-                center = L.Projection.Mercator.project(center);
-                center = query._transform.point25To2(query._transform.param, center.x, center.y);
-                center = L.Projection.Mercator.unproject(center);
-                var halfheight = 0.000035;
-                var halfwidth = 0.001;
-                var dh = 0.00035;
-                var dw = 0.001;
-                var bound = this.makeBound(center, halfheight, halfwidth);
-                var param = {bounds:bound};
-                var callback = function(a){
-                    if($.isEmptyObject(a._layers)){
-                        halfheight = halfheight + dh;
-                        halfwidth = halfwidth + dw;
-                        var newbound = this.makeBound(center, halfheight, halfwidth);
-                        if(newbound._southWest.lat > 0 && newbound._southWest.lng > 0){
-                            param = {bounds:newbound}
-                            this.doQuery(matchConf, param, null, callback);
-                        }
-                    }else{
-                        var mindistance = 10000000;
-                        var smid;
-                        var relationmap = {};
-                        relationmap.Layername = layername;
-                        relationmap.matchLayername = currentConf.matchLayerName;
-                        relationmap.TRIID = triid;
-                        for(var superfeature in a._layers){
-                            var supercenter = a._layers[superfeature].getBounds().getCenter();
-                            var distance = center.distanceTo(supercenter);
-                            if(distance < mindistance){
-                                mindistance = distance;
-                                smid = a._layers[superfeature].feature.properties.SMID;
-                            }
-                        }
-                        relationmap.SMID = smid;
-                        relationList.push(relationmap);
-                        num = num + 1;
-                        if(num == objlength){
-                            fn(relationList);
-                        }
-                    }
-                }
-                this.doQuery(matchConf, param, null, callback);
-            }
+            this.OGCFun(currentConf, matchConf, features, fn, featuresKeys, relationList, OGC_i);
             break;
         case "Supermap": // SuperMap查询,处理SuperMap格式的Feature,2维转2.5维坐标
-            for(var index in features){
-                var smid = features[index].feature.properties.SMID;
-                center = features[index].getBounds().getCenter();
-                center = L.Projection.Mercator.project(center);
-                center = query._transform.point2To25(query._transform.param, center.x, center.y);
-                center = L.Projection.Mercator.unproject(center);
-                var halfheight = 0.0021;
-                var halfwidth = 0.004;
-                var dh = 0.0021;
-                var dw = 0.004;
-                var bound = this.makeBound(center, halfheight, halfwidth);
-                var param = {bounds:bound};
-                var callback = function(ogcfeatures){
-                    if($.isEmptyObject(ogcfeatures)){
-                        halfheight = halfheight + dh;
-                        halfwidth = halfwidth + dw;
-                        var newbound = this.makeBound(center, halfheight, halfwidth);
-                        param = {bounds:newbound}
-                        this.doQuery(matchConf, param, null, callback);
-                    }else{
-                        var mindistance = 10000000;
-                        var triid;
-                        var relationmap = {};
-                        relationmap.Layername = layername;
-                        relationmap.matchLayername = currentConf.matchLayerName;
-                        relationmap.SMID = smid;
-                        for(var ogcfeature in ogcfeatures){
-                            var ogccenter = ogcfeatures[ogcfeature].getBounds().getCenter();
-                            var distance = center.distanceTo(ogccenter);
-                            if(distance < mindistance){
-                                mindistance = distance;
-                                triid = ogcfeatures[ogcfeature].feature.properties.ID;
-                            }
-                        }
-                        relationmap.triid = triid;
-                        relationList.push(relationmap);
-                        num = num + 1;
-                        if(num == objlength){
-                            fn(relationList);
-                        }
-                    }
-                }
-                this.doQuery(matchConf, param, null, callback);
-            }
+            this.SuperFun( currentConf, matchConf, features, fn, featuresKeys, relationList, OGC_i);
             break;
     }
+}
+
+/*
+ * OGC类型
+ * */
+VitoGIS.Query.prototype.OGCFun = function( currentConf, matchConf, features, fn, featuresKeys, relationList, OGC_i) {
+    var center;
+    var query = new L.SupermapQuery();
+    var feature = features[featuresKeys[OGC_i]];
+    var triid =feature.feature.properties.ID;
+    matchConf.formerid = triid;
+    center =feature.getBounds().getCenter();
+    center = L.Projection.Mercator.project(center);
+    center = query._transform.point25To2(query._transform.param, center.x, center.y);
+    center = L.Projection.Mercator.unproject(center);
+    var halfheight = 0.000035;
+    var halfwidth = 0.001;
+    var bound = this.makeBound(center, halfheight, halfwidth);
+    var param = {bounds:bound};
+    matchConf.center = center;
+    matchConf.halfheight = halfheight;
+    matchConf.halfwidth = halfwidth;
+    var callback = function(a, p){
+        if($.isEmptyObject(a._layers)){
+            var dh = 0.000035;
+            var dw = 0.001;
+            var halfheight = p.halfheight + dh;
+            var halfwidth = p.halfwidth + dw;
+            var newbound = this.makeBound(p.center, halfheight, halfwidth);
+            if(newbound._southWest.lat > 0 && newbound._southWest.lng > 0){
+                param = {bounds:newbound};
+                matchConf.formerid = p.formerid;
+                matchConf.center = p.center;
+                matchConf.halfheight = halfheight;
+                matchConf.halfwidth = halfwidth;
+                this.doQuery(matchConf, param, null, callback);
+            }
+        }else{
+            var mindistance = 10000000000;
+            var smid;
+            var relationmap = {};
+            relationmap.layername = currentConf.layername;
+            relationmap.matchlayername = currentConf.matchLayerName;
+            relationmap.featureid = p.formerid;
+            relationmap.state = 0;
+            relationmap.type = 3;
+            for(var superfeature in a._layers){
+                var supercenter = a._layers[superfeature].getBounds().getCenter();
+                var distance = center.distanceTo(supercenter);
+                if(distance < mindistance){
+                    mindistance = distance;
+                    smid = a._layers[superfeature].feature.properties.SMID;
+                }
+            }
+            relationmap.matchid = smid;
+            relationList.push(relationmap);
+            if(OGC_i < featuresKeys.length - 1) {
+                OGC_i++;
+                this.OGCFun(currentConf, matchConf, features, fn, featuresKeys, relationList, OGC_i);
+            }else {
+                fn(relationList);
+            }
+        }
+    }
+    this.doQuery(matchConf, param, null, callback);
+}
+
+/*
+ * SuperMap类型
+ * */
+VitoGIS.Query.prototype.SuperFun = function(currentConf, matchConf, features, fn, featuresKeys, relationList, OGC_i) {
+    var center;
+    var query = new L.SupermapQuery();
+    var feature = features[featuresKeys[OGC_i]];
+    var smid = feature.feature.properties.SMID;
+    matchConf.formerid = smid;
+    center = feature.getBounds().getCenter();
+    center = L.Projection.Mercator.project(center);
+    center = query._transform.point2To25(query._transform.param, center.x, center.y);
+    center = L.Projection.Mercator.unproject(center);
+    var halfheight = 0.00105;
+    var halfwidth = 0.002;
+    var bound = this.makeBound(center, halfheight, halfwidth);
+    var param = {bounds:bound};
+    matchConf.center = center;
+    matchConf.halfheight = halfheight;
+    matchConf.halfwidth = halfwidth;
+    var callback = function(ogcfeatures, p){
+        if($.isEmptyObject(ogcfeatures)){
+            var dh = 0.00105;
+            var dw = 0.002;
+            var halfheight = p.halfheight + dh;
+            var halfwidth = p.halfwidth + dw;
+            var newbound = this.makeBound(p.center, halfheight, halfwidth);
+            if(newbound._southWest.lat > 0 && newbound._southWest.lng > 0){
+                param = {bounds:newbound};
+                matchConf.formerid = p.formerid;
+                matchConf.center = p.center;
+                matchConf.halfheight = halfheight;
+                matchConf.halfwidth = halfwidth;
+                this.doQuery(matchConf, param, null, callback);
+            }
+        }else{
+            var mindistance = 10000000000;
+            var triid;
+            var relationmap = {};
+            relationmap.layername = currentConf.layername;
+            relationmap.matchlayername = currentConf.matchLayerName;
+            relationmap.featureid = p.formerid;
+            relationmap.state = 0;
+            relationmap.type = 2;
+            for(var ogcfeature in ogcfeatures){
+                var ogccenter = ogcfeatures[ogcfeature].getBounds().getCenter();
+                var distance = center.distanceTo(ogccenter);
+                if(distance < mindistance){
+                    mindistance = distance;
+                    triid = ogcfeatures[ogcfeature].feature.properties.ID;
+                }
+            }
+            relationmap.matchid = triid;
+            relationList.push(relationmap);
+            if(OGC_i < featuresKeys.length - 1) {
+                OGC_i++;
+                this.SuperFun(currentConf, matchConf, features, fn, featuresKeys, relationList, OGC_i);
+            }else {
+                fn(relationList);
+            }
+        }
+    }
+    this.doQuery(matchConf, param, null, callback);
 }
 
 /*

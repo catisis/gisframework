@@ -1,5 +1,5 @@
 /*
- Leaflet 1.0.0-beta.2 ("293a8b1"), a JS library for interactive maps. http://leafletjs.com
+ Leaflet 1.0.0-beta.2 ("1112af9"), a JS library for interactive maps. http://leafletjs.com
  (c) 2010-2015 Vladimir Agafonkin, (c) 2010-2011 CloudMade
 */
 (function (window, document, undefined) {
@@ -2697,6 +2697,7 @@ L.Map.include({
  * */
 (function (window) {
     window._EsriLeafletCallbacks = {};
+    window.formeridObj = {};
 })(window)
 
 L.Request = {
@@ -2732,7 +2733,7 @@ L.Request = {
         return data;
     },
 
-    createRequest: function (callback, context, resultType) {
+    createRequest: function (callback, context, resultType, _queryparam) {
         resultType = resultType ? resultType : "JSON";
         var httpRequest = new XMLHttpRequest();
 
@@ -2780,7 +2781,7 @@ L.Request = {
 
                 httpRequest.onerror = L.Util.falseFn;
 
-                callback.call(context, error, response);
+                callback.call(context, error, response, _queryparam);
             }
         };
 
@@ -2796,8 +2797,8 @@ L.Request = {
      *  @params {[Object]} context 环境
      *  @params {[String]} resultType 返回类型 当前支持JSON
      * */
-    post: function (url, params, callback, context, resultType) {
-        var httpRequest = this.createRequest(callback, context, resultType);
+    post: function (url, params, callback, context, resultType, _queryparam) {
+        var httpRequest = this.createRequest(callback, context, resultType, _queryparam);
         httpRequest.open('POST', url);
         //httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         httpRequest.setRequestHeader('Access-Control-Allow-Headers', '*');
@@ -2871,7 +2872,7 @@ L.Request = {
      *  @params {[Function]} callback 回调
      *  @params {[Object]} context 环境
      * */
-    JSONP: function (url, params, callback, context) {
+    JSONP: function (url, params, callback, context, _queryparam) {
 
         var callbackId = 'c' + new Date().getTime();
 
@@ -2882,6 +2883,9 @@ L.Request = {
         script.src = url + '?' + this._serialize(params);
         script.id = callbackId;
 
+        if(Object.getOwnPropertyNames(_queryparam).length > 0){
+            window.formeridObj[callbackId] = _queryparam;
+        }
 
         window._EsriLeafletCallbacks[callbackId] = function (response) {
             if (window._EsriLeafletCallbacks[callbackId] !== true) {
@@ -2902,8 +2906,11 @@ L.Request = {
                     error = response;
                     response = null;
                 }
-
-                callback.call(context, error, response);
+                var p;
+                if(Object.getOwnPropertyNames(window.formeridObj).length > 0){
+                    p = window.formeridObj[callbackId];
+                }
+                callback.call(context, error, response, p);
                 //  window._EsriLeafletCallbacks[callbackId] = true;
             }
         };
@@ -14123,7 +14130,7 @@ L.SupermapQuery = L.Class.extend({
             }
             marker.feature = marker.toGeoJSON();
             marker.feature.properties = prooerties;
-            marker.feature.id = "smid"+prooerties.SMID
+            marker.feature.id = "smid"+prooerties.SMID;
             marker.addTo(result);
         }
     },
@@ -14149,7 +14156,7 @@ L.SupermapQuery = L.Class.extend({
 
         polyline.feature = polyline.toGeoJSON();
         polyline.feature.properties = prooerties;
-        polyline.feature.id = "smid"+prooerties.SMID
+        polyline.feature.id = "smid"+prooerties.SMID;
         polyline.addTo(result);
     },
     _toQueryStr: function () {
@@ -14268,8 +14275,15 @@ L.SupermapQuery = L.Class.extend({
         for (var times = 0; times < queryTask.length - 1; times++) {
             this.noReturnJP(url, queryTask[times])
         }
-
-        this.JSONP(url, queryTask[queryTask.length - 1], function (a, b) {
+        var _queryparam = {};
+        if(context.formerid){
+            _queryparam.formerid = context.formerid;
+            _queryparam.center = context.center;
+            _queryparam.halfheight = context.halfheight;
+            _queryparam.halfwidth = context.halfwidth;
+            _queryparam.random = context.random;
+        }
+        this.JSONP(url, queryTask[queryTask.length - 1], function (a, b, p) {
             var result = new L.featureGroup();
             for (var recordIndex = 0; recordIndex < b.recordsets.length; recordIndex++) {
                 for (var i = 0; i < b.recordsets[recordIndex].features.length; i++) {
@@ -14292,9 +14306,8 @@ L.SupermapQuery = L.Class.extend({
                     }
                 }
             }
-
-            callback.call(context, result);
-        }, this);
+            callback.call(context, result, p);
+        }, this, _queryparam);
     }
 
 })
@@ -14681,9 +14694,9 @@ L.Format.GeoJSON = L.Format.extend({
                 continue;
             }
             layer.feature = geoJson.features[i];
+            layer.feature.id = layer.feature.id.trim();
             layers[layer.feature.id] = layer;
         }
-
         return layers;
     }
 });
@@ -15012,16 +15025,23 @@ L.WFSQuery = L.Class.extend({
         return this;
     },
     get: function (url, callback, context) {
+        var _queryparam = {};
+        if(context.formerid){
+            _queryparam.formerid = context.formerid;
+            _queryparam.center = context.center;
+            _queryparam.halfheight = context.halfheight;
+            _queryparam.halfwidth = context.halfwidth;
+            _queryparam.random = context.random;
+        }
         this.post(url, L.XmlUtil.createXmlDocumentString(this._getFeature(this.options.filter)),
-            function (a, data) {
+            function (a, data, _queryparam) {
                 var layers = this.readFormat.responseToLayers({
                     rawData: data,
                     coordsToLatLng: this.options.coordsToLatLng,
                     options: this.options
-
                 });
-                callback.call(context, layers);
-            }, this)
+                callback.call(context, layers, _queryparam);
+            }, this, undefined, _queryparam)
     },
     _namespaceName: function (name) {
         return this.options.typeNS + ':' + name;

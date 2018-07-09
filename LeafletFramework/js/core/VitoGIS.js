@@ -41,7 +41,6 @@ var VitoGIS = {
     _object: function (o) {
         function F() {
         }
-
         F.prototype = o;
         return new F();
     },
@@ -67,22 +66,22 @@ var VitoGIS = {
      * @param {String} continerId 容器的id
      * */
     init: function (url, callback, continerId) {
-        var method = {};
+        _method = {};
         //初始化基础参数
         this._initBaseOptions();
         url = url || this._path + "/../conf.json";
         //添加事件
-        method.Events = function () {
+        _method.Events = function () {
         };
-        L.extend(method.Events, L.Mixin.Events);
+        L.extend(_method.Events, L.Mixin.Events);
 
         if(url.length > 200) {
             var urlObj = JSON.parse(url);
-            this._initByConf(method,continerId,urlObj,callback,this)
+            this._initByConf(_method,continerId,urlObj,callback,this)
         } else {
             //对默认不给配置文件时进行默认设置
             L.Request.get(url, "", function (error, conf) {
-                this._initByConf(method,continerId,conf,callback,this)
+                this._initByConf(_method,continerId,conf,callback,this)
             }, this)
         }
     },
@@ -192,6 +191,9 @@ var VitoGIS = {
         that._initWidgets(method);
         if (callback)
             callback(method);
+    },
+    _getEvents: function(){
+        return _method;
     }
 };
 //VitoGIS.LayerManager = new VitoGIS.LayerManager.proto();

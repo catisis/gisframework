@@ -8,6 +8,7 @@
  * */
 (function (window) {
     window._EsriLeafletCallbacks = {};
+    window.formeridObj = {};
 })(window)
 
 L.Request = {
@@ -43,7 +44,7 @@ L.Request = {
         return data;
     },
 
-    createRequest: function (callback, context, resultType) {
+    createRequest: function (callback, context, resultType, _queryparam) {
         resultType = resultType ? resultType : "JSON";
         var httpRequest = new XMLHttpRequest();
 
@@ -91,7 +92,7 @@ L.Request = {
 
                 httpRequest.onerror = L.Util.falseFn;
 
-                callback.call(context, error, response);
+                callback.call(context, error, response, _queryparam);
             }
         };
 
@@ -107,8 +108,8 @@ L.Request = {
      *  @params {[Object]} context 环境
      *  @params {[String]} resultType 返回类型 当前支持JSON
      * */
-    post: function (url, params, callback, context, resultType) {
-        var httpRequest = this.createRequest(callback, context, resultType);
+    post: function (url, params, callback, context, resultType, _queryparam) {
+        var httpRequest = this.createRequest(callback, context, resultType, _queryparam);
         httpRequest.open('POST', url);
         //httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         httpRequest.setRequestHeader('Access-Control-Allow-Headers', '*');
@@ -182,7 +183,7 @@ L.Request = {
      *  @params {[Function]} callback 回调
      *  @params {[Object]} context 环境
      * */
-    JSONP: function (url, params, callback, context) {
+    JSONP: function (url, params, callback, context, _queryparam) {
 
         var callbackId = 'c' + new Date().getTime();
 
@@ -193,6 +194,9 @@ L.Request = {
         script.src = url + '?' + this._serialize(params);
         script.id = callbackId;
 
+        if(Object.getOwnPropertyNames(_queryparam).length > 0){
+            window.formeridObj[callbackId] = _queryparam;
+        }
 
         window._EsriLeafletCallbacks[callbackId] = function (response) {
             if (window._EsriLeafletCallbacks[callbackId] !== true) {
@@ -213,8 +217,11 @@ L.Request = {
                     error = response;
                     response = null;
                 }
-
-                callback.call(context, error, response);
+                var p;
+                if(Object.getOwnPropertyNames(window.formeridObj).length > 0){
+                    p = window.formeridObj[callbackId];
+                }
+                callback.call(context, error, response, p);
                 //  window._EsriLeafletCallbacks[callbackId] = true;
             }
         };

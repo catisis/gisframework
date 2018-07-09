@@ -167,7 +167,7 @@ L.SupermapQuery = L.Class.extend({
             }
             marker.feature = marker.toGeoJSON();
             marker.feature.properties = prooerties;
-            marker.feature.id = "smid"+prooerties.SMID
+            marker.feature.id = "smid"+prooerties.SMID;
             marker.addTo(result);
         }
     },
@@ -193,7 +193,7 @@ L.SupermapQuery = L.Class.extend({
 
         polyline.feature = polyline.toGeoJSON();
         polyline.feature.properties = prooerties;
-        polyline.feature.id = "smid"+prooerties.SMID
+        polyline.feature.id = "smid"+prooerties.SMID;
         polyline.addTo(result);
     },
     _toQueryStr: function () {
@@ -312,8 +312,15 @@ L.SupermapQuery = L.Class.extend({
         for (var times = 0; times < queryTask.length - 1; times++) {
             this.noReturnJP(url, queryTask[times])
         }
-
-        this.JSONP(url, queryTask[queryTask.length - 1], function (a, b) {
+        var _queryparam = {};
+        if(context.formerid){
+            _queryparam.formerid = context.formerid;
+            _queryparam.center = context.center;
+            _queryparam.halfheight = context.halfheight;
+            _queryparam.halfwidth = context.halfwidth;
+            _queryparam.random = context.random;
+        }
+        this.JSONP(url, queryTask[queryTask.length - 1], function (a, b, p) {
             var result = new L.featureGroup();
             for (var recordIndex = 0; recordIndex < b.recordsets.length; recordIndex++) {
                 for (var i = 0; i < b.recordsets[recordIndex].features.length; i++) {
@@ -336,9 +343,8 @@ L.SupermapQuery = L.Class.extend({
                     }
                 }
             }
-
-            callback.call(context, result);
-        }, this);
+            callback.call(context, result, p);
+        }, this, _queryparam);
     }
 
 })

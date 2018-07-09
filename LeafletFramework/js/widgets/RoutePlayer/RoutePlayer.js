@@ -23,7 +23,7 @@ VitoGIS.RoutePlayer.prototype = {
      */
     initRoute: function (features, isZoom) {
     	debugger
-        features = this._formatData(features);
+        //features = this._formatData(features); //由前端调用方法处理
         var myFeatures = [];
         var markerList = [];
         for (var i in features) {
@@ -68,8 +68,8 @@ VitoGIS.RoutePlayer.prototype = {
         for (var i in features) {
             var times = features[i].currtimes;
             var points = features[i].geom;
-            times.splice(0,3);
-            points.splice(0,3);
+            //times.splice(0,3);
+            //points.splice(0,3); //前三个数据有可能有很大误差，由前端处理
             if(points.length > 1){
                 for(var j = 1; j < points.length; j++){
                     var currentPoint = L.latLng(points[j]);

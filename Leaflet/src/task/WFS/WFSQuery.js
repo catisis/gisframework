@@ -41,16 +41,23 @@ L.WFSQuery = L.Class.extend({
         return this;
     },
     get: function (url, callback, context) {
+        var _queryparam = {};
+        if(context.formerid){
+            _queryparam.formerid = context.formerid;
+            _queryparam.center = context.center;
+            _queryparam.halfheight = context.halfheight;
+            _queryparam.halfwidth = context.halfwidth;
+            _queryparam.random = context.random;
+        }
         this.post(url, L.XmlUtil.createXmlDocumentString(this._getFeature(this.options.filter)),
-            function (a, data) {
+            function (a, data, _queryparam) {
                 var layers = this.readFormat.responseToLayers({
                     rawData: data,
                     coordsToLatLng: this.options.coordsToLatLng,
                     options: this.options
-
                 });
-                callback.call(context, layers);
-            }, this)
+                callback.call(context, layers, _queryparam);
+            }, this, undefined, _queryparam)
     },
     _namespaceName: function (name) {
         return this.options.typeNS + ':' + name;

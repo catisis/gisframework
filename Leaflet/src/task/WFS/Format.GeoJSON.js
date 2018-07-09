@@ -21,9 +21,9 @@ L.Format.GeoJSON = L.Format.extend({
                 continue;
             }
             layer.feature = geoJson.features[i];
+            layer.feature.id = layer.feature.id.trim();
             layers[layer.feature.id] = layer;
         }
-
         return layers;
     }
 });

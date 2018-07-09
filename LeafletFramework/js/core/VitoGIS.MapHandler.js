@@ -95,7 +95,11 @@ VitoGIS.MapHandler.prototype._featureEventHandler = function (feature, conf, id)
     }
 
     feature.on("mouseover", function (e) {
+        var _this = this;
         mouseoverFuc.call(this, e);
+        if(conf.isCalibration){
+            VitoGIS._getEvents().Events.fire("FEATUREMOUSEOVER", _this); //必须与框架使用同一个E
+        }
     })
 
     if (feature.feature.properties.ISBUSINE)
@@ -125,7 +129,11 @@ VitoGIS.MapHandler.prototype._featureEventHandler = function (feature, conf, id)
     }, context)
 
     feature.on("popupopen", function (e) {
-        currentThis._setIframe(resourceId, e.target.feature.properties, (isPass ? "passPage" : "defaultPage"),this);
+        if(context.conf.isCalibration){ // 是否启用校正模式
+            currentThis._setIframe(resourceId, e.target.feature.properties, "calibratePage",this);
+        }else{
+            currentThis._setIframe(resourceId, e.target.feature.properties, (isPass ? "passPage" : "defaultPage"),this);
+        }
     });
 
     feature.on("popupclose", function (e) {
@@ -150,7 +158,6 @@ VitoGIS.MapHandler.prototype._featureEventHandler = function (feature, conf, id)
         if (e.target.feature)
             e.properties = e.target.feature.properties;
         this.currentThis.Events.fire("FEATURECLICK", e);
-
     }, currentThis)
     feature.on("dblclick", function (e) {
         if (e.target.feature)
@@ -184,6 +191,11 @@ VitoGIS.MapHandler.prototype._featureEventHandler = function (feature, conf, id)
     feature.addTo(this.currentLayer, id);
 }
 
+VitoGIS.MapHandler.prototype._changeHighLight = function(target) {
+    if (overStyle.options && target.feature.overIconUrl)
+        overStyle.options.iconUrl = target.feature.overIconUrl;
+    target["setStyle"](overStyle);
+}
 
 /**
  * 要素添加到图层
@@ -203,9 +215,9 @@ VitoGIS.MapHandler.prototype.addToMap = function (options, features, layer) {
         conf = options,
         defaultStyle = {},
         passStyle = {},
-        overStyle = {},
         offset = [12, -15],
         context;
+        overStyle = {};
     if (layer) {
         currentLayer = layer;
     }
