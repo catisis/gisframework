@@ -95,7 +95,7 @@ VitoGIS.ConfigManager = function (conf) {
     }
 
     conf = _confFix(conf);
-    var baseLayerConf, featureLayersConf, widgetsConf, divConf,
+    var baseLayerConf, featureLayersConf, widgetsConf, divConf,_currentBaseLayerConf
         innerFunc = function (conf) {
             baseLayerConf = conf.baseLayerConf;
             featureLayersConf = conf.featureLayersConf;
@@ -110,6 +110,15 @@ VitoGIS.ConfigManager = function (conf) {
          * */
         getBaseLayerConf: function () {
             return baseLayerConf;
+        },
+        getCurrentBaseLayerConf: function(){
+            var _baseLayersConf = this.getBaseLayerConf();
+            for (var index in _baseLayersConf) {
+                if (_baseLayersConf[index].visible) {
+                    _currentBaseLayerConf = _baseLayersConf[index];
+                }
+            }
+            return _currentBaseLayerConf;
         },
         /***
          * 设置底图配置文件
