@@ -173,7 +173,7 @@ VitoGIS.LayerManager.prototype.dealLayer = function (name, fn) {
 /*
  * 高亮显示被匹配图形
  * */
-VitoGIS.LayerManager.prototype._getMatchFeature = function (layername, id, type) {
+VitoGIS.LayerManager.prototype._getMatchFeature = function (layername, id, type, eventtype) {
     var layerid;
     switch (type) {
         case 3:
@@ -183,9 +183,16 @@ VitoGIS.LayerManager.prototype._getMatchFeature = function (layername, id, type)
             layerid = layername + "." + id;
             break;
     }
-    var target = this.map._layers[layername]._layers[layerid];
+    var target;
+    if(this.map._layers[layername]){
+        target= this.map._layers[layername]._layers[layerid];
+    }
     if (target){
-        this._changeHighLight(target);
+        if(eventtype == "over"){
+            this._changeHighLight(target);
+        }else if (eventtype == "out"){
+            this._changedefault(target);
+        }
         return true;
     }else{
         return false;

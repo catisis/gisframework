@@ -125,7 +125,11 @@ VitoGIS.MapHandler.prototype._featureEventHandler = function (feature, conf, id)
 
 
     feature.on("mouseout", function (e) {
+        var _this = e.target;;
         mouseoutFuc.call(this, e);
+        if(conf.isCalibration){
+            VitoGIS._getEvents().Events.fire("FEATUREMOUSEOUT", _this); //必须与框架使用同一个E
+        }
     }, context)
 
     feature.on("popupopen", function (e) {
@@ -191,10 +195,27 @@ VitoGIS.MapHandler.prototype._featureEventHandler = function (feature, conf, id)
     feature.addTo(this.currentLayer, id);
 }
 
+/*
+* FeatureMouseOver
+* */
 VitoGIS.MapHandler.prototype._changeHighLight = function(target) {
     if (overStyle.options && target.feature.overIconUrl)
         overStyle.options.iconUrl = target.feature.overIconUrl;
     target["setStyle"](overStyle);
+    target._showLabel({latlng:target.getCenter()});
+}
+
+/*
+* FeatureMouseOut
+* */
+VitoGIS.MapHandler.prototype._changedefault = function(target){
+    var defaultstyle = {
+        "fillColor": "#CD4F39",
+        "opacity": 0.1,
+        "fillOpacity": 0.5
+    };
+    target["setStyle"](defaultstyle);
+    target._hideLabel();
 }
 
 /**
