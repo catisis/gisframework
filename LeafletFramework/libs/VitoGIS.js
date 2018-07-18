@@ -1,5 +1,5 @@
 /*
- Leaflet 1.0.0-beta.2 ("1112af9"), a JS library for interactive maps. http://leafletjs.com
+ Leaflet 1.0.0-beta.2 ("b2bd2ca"), a JS library for interactive maps. http://leafletjs.com
  (c) 2010-2015 Vladimir Agafonkin, (c) 2010-2011 CloudMade
 */
 (function (window, document, undefined) {
@@ -14281,7 +14281,6 @@ L.SupermapQuery = L.Class.extend({
             _queryparam.center = context.center;
             _queryparam.halfheight = context.halfheight;
             _queryparam.halfwidth = context.halfwidth;
-            _queryparam.random = context.random;
         }
         this.JSONP(url, queryTask[queryTask.length - 1], function (a, b, p) {
             var result = new L.featureGroup();
@@ -15031,7 +15030,6 @@ L.WFSQuery = L.Class.extend({
             _queryparam.center = context.center;
             _queryparam.halfheight = context.halfheight;
             _queryparam.halfwidth = context.halfwidth;
-            _queryparam.random = context.random;
         }
         this.post(url, L.XmlUtil.createXmlDocumentString(this._getFeature(this.options.filter)),
             function (a, data, _queryparam) {

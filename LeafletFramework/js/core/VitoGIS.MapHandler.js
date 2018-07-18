@@ -209,12 +209,7 @@ VitoGIS.MapHandler.prototype._changeHighLight = function(target) {
 * FeatureMouseOut
 * */
 VitoGIS.MapHandler.prototype._changedefault = function(target){
-    var defaultstyle = {
-        "fillColor": "#CD4F39",
-        "opacity": 0.1,
-        "fillOpacity": 0.5
-    };
-    target["setStyle"](defaultstyle);
+    target["setStyle"](_defaultStyle);
     target._hideLabel();
 }
 
@@ -234,11 +229,11 @@ VitoGIS.MapHandler.prototype.addToMap = function (options, features, layer) {
         method = "",
         currentThis = this,
         conf = options,
-        defaultStyle = {},
         passStyle = {},
         offset = [12, -15],
         context;
         overStyle = {};
+        _defaultStyle = {};
     if (layer) {
         currentLayer = layer;
     }
@@ -248,13 +243,13 @@ VitoGIS.MapHandler.prototype.addToMap = function (options, features, layer) {
     //  currentLayer.clearLayers();
     switch (conf.geoType) {
         case "point":
-            defaultStyle = new L.icon(conf.defaultStyle);
+            _defaultStyle = new L.icon(conf.defaultStyle);
             passStyle = new L.icon(conf.passStyle);
             overStyle = new L.icon(conf.passStyle);
             offset = [20, -35];
             method = "setIcon";
             context = {
-                defaultStyle: defaultStyle,
+                defaultStyle: _defaultStyle,
                 passStyle: passStyle,
                 overStyle: overStyle,
                 offset: offset,
@@ -263,12 +258,12 @@ VitoGIS.MapHandler.prototype.addToMap = function (options, features, layer) {
             break;
         case "polygon":
         case "polyline":
-            defaultStyle = conf.defaultStyle;
+            _defaultStyle = conf.defaultStyle;
             passStyle = conf.passStyle;
             overStyle = {fillOpacity: 0.5, opacity: 0.5, fillColor: "#ffffff"};
             method = "setStyle";
             context = {
-                defaultStyle: defaultStyle,
+                defaultStyle: _defaultStyle,
                 passStyle: passStyle,
                 overStyle: overStyle,
                 method: method

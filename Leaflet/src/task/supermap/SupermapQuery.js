@@ -318,7 +318,6 @@ L.SupermapQuery = L.Class.extend({
             _queryparam.center = context.center;
             _queryparam.halfheight = context.halfheight;
             _queryparam.halfwidth = context.halfwidth;
-            _queryparam.random = context.random;
         }
         this.JSONP(url, queryTask[queryTask.length - 1], function (a, b, p) {
             var result = new L.featureGroup();

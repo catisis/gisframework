@@ -47,7 +47,6 @@ L.WFSQuery = L.Class.extend({
             _queryparam.center = context.center;
             _queryparam.halfheight = context.halfheight;
             _queryparam.halfwidth = context.halfwidth;
-            _queryparam.random = context.random;
         }
         this.post(url, L.XmlUtil.createXmlDocumentString(this._getFeature(this.options.filter)),
             function (a, data, _queryparam) {

@@ -69,7 +69,6 @@ VitoGIS.Query.prototype.queryByBounds = function (options, params, featureLayer,
         this.center = options.center;
         this.halfheight = options.halfheight;
         this.halfwidth = options.halfwidth;
-        this.random = options.random;
     }
     query.get(options.url, callback, this);
 }
@@ -114,7 +113,6 @@ VitoGIS.Query.prototype.queryByWhere = function (options, params, featureLayer, 
         this.center = options.center;
         this.halfheight = options.halfheight;
         this.halfwidth = options.halfwidth;
-        this.random = options.random;
     }
     query.get(options.url, callback, this);
 }
@@ -407,7 +405,7 @@ VitoGIS.Query.prototype.OGCFun = function( currentConf, matchConf, features, fn,
     matchConf.halfheight = halfheight;
     matchConf.halfwidth = halfwidth;
     var callback = function(a, p){
-        if($.isEmptyObject(a._layers)){
+        if($.isEmptyObject(a._layers) || Object.getOwnPropertyNames(a._layers).length < 9){
             var dh = 0.000035;
             var dw = 0.001;
             var halfheight = p.halfheight + dh;
@@ -422,9 +420,10 @@ VitoGIS.Query.prototype.OGCFun = function( currentConf, matchConf, features, fn,
                 this.doQuery(matchConf, param, null, callback);
             }
         }else{
-            var mindistance = 10000000000;
-            var smid;
             var relationmap = {};
+            var optionalid = [];
+            var distancearry = [];
+            var distanceToId = {};
             relationmap.layername = currentConf.layername;
             relationmap.matchlayername = currentConf.matchLayerName;
             relationmap.featureid = p.formerid;
@@ -433,12 +432,17 @@ VitoGIS.Query.prototype.OGCFun = function( currentConf, matchConf, features, fn,
             for(var superfeature in a._layers){
                 var supercenter = a._layers[superfeature].getBounds().getCenter();
                 var distance = center.distanceTo(supercenter);
-                if(distance < mindistance){
-                    mindistance = distance;
-                    smid = a._layers[superfeature].feature.properties.SMID;
-                }
+                distanceToId[distance] = a._layers[superfeature].feature.properties.SMID;
+                distancearry.push(distance);
             }
-            relationmap.matchid = smid;
+            distancearry.sort(this.sortNumber);
+            distancearry.splice(9, distancearry.length - 9);
+            for(var i = 0; i < distancearry.length; i++){
+                optionalid.push(distanceToId[distancearry[i]]);
+            }
+            relationmap.matchid = optionalid[0];
+            optionalid.splice(0, 1);
+            relationmap.optionalid = optionalid.join();
             relationList.push(relationmap);
             if(OGC_i < featuresKeys.length - 1) {
                 OGC_i++;
@@ -472,7 +476,7 @@ VitoGIS.Query.prototype.SuperFun = function(currentConf, matchConf, features, fn
     matchConf.halfheight = halfheight;
     matchConf.halfwidth = halfwidth;
     var callback = function(ogcfeatures, p){
-        if($.isEmptyObject(ogcfeatures)){
+        if($.isEmptyObject(ogcfeatures) || Object.getOwnPropertyNames(ogcfeatures).length < 9){
             var dh = 0.00105;
             var dw = 0.002;
             var halfheight = p.halfheight + dh;
@@ -487,9 +491,10 @@ VitoGIS.Query.prototype.SuperFun = function(currentConf, matchConf, features, fn
                 this.doQuery(matchConf, param, null, callback);
             }
         }else{
-            var mindistance = 10000000000;
-            var triid;
             var relationmap = {};
+            var optionalid = [];
+            var distancearry = [];
+            var distanceToId = {};
             relationmap.layername = currentConf.layername;
             relationmap.matchlayername = currentConf.matchLayerName;
             relationmap.featureid = p.formerid;
@@ -498,12 +503,17 @@ VitoGIS.Query.prototype.SuperFun = function(currentConf, matchConf, features, fn
             for(var ogcfeature in ogcfeatures){
                 var ogccenter = ogcfeatures[ogcfeature].getBounds().getCenter();
                 var distance = center.distanceTo(ogccenter);
-                if(distance < mindistance){
-                    mindistance = distance;
-                    triid = ogcfeatures[ogcfeature].feature.properties.ID;
-                }
+                distanceToId[distance] = ogcfeatures[ogcfeature].feature.properties.ID;
+                distancearry.push(distance);
             }
-            relationmap.matchid = triid;
+            distancearry.sort(this.sortNumber);
+            distancearry.splice(9, distancearry.length - 9);
+            for(var i = 0; i < distancearry.length; i++){
+                optionalid.push(distanceToId[distancearry[i]]);
+            }
+            relationmap.matchid = optionalid[0];
+            optionalid.splice(0, 1);
+            relationmap.optionalid = optionalid.join();
             relationList.push(relationmap);
             if(OGC_i < featuresKeys.length - 1) {
                 OGC_i++;
@@ -528,6 +538,10 @@ VitoGIS.Query.prototype.makeBound = function(center, halfheight, halfwidth){
     bound._southWest = _southwest;
     bound._northEast = _northeast;
     return bound;
+}
+
+VitoGIS.Query.prototype.sortNumber = function(a,b){
+    return a - b;
 }
 
 /**

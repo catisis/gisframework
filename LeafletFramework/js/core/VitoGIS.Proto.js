@@ -81,7 +81,7 @@ VitoGIS.Proto.prototype = {
     },
     _setIframe: function(id, params, type,that) {
         var type = type || "defaultPage";
-        var featureId = (params.ID || params.id) || new Date().getTime();
+        var featureId = (params.ID || params.id || params.SMID) || new Date().getTime();
         var title = "";
         var paramsStr = "";
         if (params) {

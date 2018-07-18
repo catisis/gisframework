@@ -93,6 +93,10 @@ VitoGIS.MapManager = function (container, conf, _this) {
         _this.Events.fire("MAPMOUSEMOVE", e);
     });
 
+    map.on("mouseout", function (e) {
+        _this.Events.fire("MAPMOUSEOUT", e);
+    });
+
     return {
         map: map,
         _currentBaseLayerConf: this._currentBaseLayerConf,
